@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 
-import { isAuthenticated, isCustomer, logout } from '../utils/auth';
+import { isAuthenticated, isCustomer, logout } from '../utils/authStorage';
 
 const Navbar = () => {
   const navigate = useNavigate();
