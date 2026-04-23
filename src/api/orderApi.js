@@ -22,17 +22,17 @@ export const getOrderItemById = async (itemId) => {
 
 // Admin endpoints
 export const getAllOrdersAdmin = async (status = null, page = 0, size = 10) => {
-  const params = { page, size };
+  const params = {page, size};
   if (status) {
     params.status = status;
   }
-  const response = await apiClient.get('/orders/all', { params });
+  const response = await apiClient.get('/orders/all', {params});
   return response.data;
 };
 
 export const updateOrderStatusAdmin = async (id, status) => {
   const response = await apiClient.patch(`/orders/${id}/status`, null, {
-    params: { status },
+    params: {status},
   });
   return response.data;
 };

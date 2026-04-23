@@ -18,7 +18,7 @@ export const getPaymentById = async (id) => {
 // Admin endpoints
 export const getAllPaymentsAdmin = async (page = 0, size = 10) => {
   const response = await apiClient.get('/payments/admin/all', {
-    params: { page, size },
+    params: {page, size},
   });
   return response.data;
 };
