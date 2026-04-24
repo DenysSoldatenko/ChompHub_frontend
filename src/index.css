@@ -274,6 +274,9 @@ nav {
   margin-bottom: 1.5rem;
   border-width: 2px;
 }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 .register-alert-error-food {
   background-color: #ffebee;
   border-color: #ffcdd2;
@@ -2578,16 +2581,16 @@ nav {
 }
 /* ADMIN CSS STYLING */
 /**ADMIN LAYOUT*/
-.admin-layout {
+.user-layout {
   display: flex;
   min-height: 100vh;
   background-color: #f5f7fa;
 }
-.admin-main {
+.user-main {
   flex: 1;
   margin-left: 250px;
 }
-.admin-content {
+.user-content {
   padding: 20px;
   margin-top: 70px;
 }
@@ -2600,12 +2603,12 @@ nav {
   color: #555;
 }
 @media (max-width: 992px) {
-  .admin-main {
+  .user-main {
     margin-left: 0;
   }
 }
 /*ADMIN TOPBAR*/
-.admin-topbar {
+.user-topbar {
   height: 70px;
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -2677,7 +2680,7 @@ nav {
   color: #ff6b6b;
 }
 @media (max-width: 992px) {
-  .admin-topbar {
+  .user-topbar {
     left: 0;
   }
   .sidebar-toggle {
@@ -2686,7 +2689,7 @@ nav {
 }
 /*ADMIN SIDEBAR*/
 /* Admin Sidebar Styles */
-.admin-sidebar {
+.user-sidebar {
   width: 250px;
   background-color: #2c3e50;
   color: white;
@@ -2741,15 +2744,15 @@ nav {
 }
 /* Responsive Styles */
 @media (max-width: 992px) {
-  .admin-sidebar {
+  .user-sidebar {
     transform: translateX(-100%);
   }
-  .admin-sidebar.active {
+  .user-sidebar.active {
     transform: translateX(0);
   }
 }
 /*ADMIN REGISTER*/
-.admin-register-page {
+.user-register-page {
   min-height: 100vh;
   background-color: #f8f9fa;
   display: flex;
@@ -2758,7 +2761,7 @@ nav {
   padding: 2rem;
   font-family: 'Arial', sans-serif;
 }
-.admin-register-card {
+.user-register-card {
   width: 100%;
   max-width: 600px;
   background: white;
@@ -2766,34 +2769,34 @@ nav {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
-.admin-register-header {
+.user-register-header {
   background: #2c3e50;
   color: white;
   padding: 2rem;
   text-align: center;
 }
-.admin-register-title {
+.user-register-title {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
-.admin-register-description {
+.user-register-description {
   opacity: 0.8;
   font-size: 1rem;
 }
-.admin-register-content {
+.user-register-content {
   padding: 2rem;
 }
-.admin-form-group {
+.user-form-group {
   margin-bottom: 1.5rem;
 }
-.admin-label {
+.user-label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #333;
 }
-.admin-input {
+.user-input {
   width: 100%;
   padding: 0.8rem 1rem;
   border: 1px solid #ddd;
@@ -2801,17 +2804,17 @@ nav {
   font-size: 1rem;
   transition: border 0.3s;
 }
-.admin-input:focus {
+.user-input:focus {
   border-color: #3498db;
   outline: none;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
-.admin-roles-container {
+.user-roles-container {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
-.admin-role-checkbox {
+.user-role-checkbox {
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
@@ -2820,19 +2823,19 @@ nav {
   cursor: pointer;
   transition: all 0.3s;
 }
-.admin-role-checkbox:hover {
+.user-role-checkbox:hover {
   background: #f1f1f1;
 }
-.admin-role-checkbox.selected {
+.user-role-checkbox.selected {
   background: #3498db;
   color: white;
   border-color: #3498db;
 }
-.admin-role-input {
+.user-role-input {
   margin-right: 0.5rem;
   cursor: pointer;
 }
-.admin-register-button {
+.user-register-button {
   width: 100%;
   padding: 1rem;
   background: #2c3e50;
@@ -2845,7 +2848,7 @@ nav {
   transition: background 0.3s;
   margin-top: 1rem;
 }
-.admin-register-button:hover {
+.user-register-button:hover {
   background: #1a252f;
 }
 /* Error display styling */
@@ -2864,23 +2867,23 @@ nav {
 }
 /* Responsive design */
 @media (max-width: 768px) {
-  .admin-register-page {
+  .user-register-page {
     padding: 1rem;
   }
-  .admin-register-header {
+  .user-register-header {
     padding: 1.5rem;
   }
-  .admin-register-content {
+  .user-register-content {
     padding: 1.5rem;
   }
-  .admin-roles-container {
+  .user-roles-container {
     flex-direction: column;
     gap: 0.5rem;
   }
 }
 /*ADMIN CATEGORIES */
 /* Admin Categories Styles */
-.admin-categories {
+.user-categories {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -2959,7 +2962,7 @@ nav {
   background-color: #da190b;
 }
 /*ADMIN CATEGORY FORM*/
-.admin-category-form {
+.user-category-form {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3019,7 +3022,7 @@ nav {
   cursor: not-allowed;
 }
 /*ADMIN DASHBOARD*/
-.admin-dashboard {
+.user-dashboard {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3189,7 +3192,7 @@ th {
   }
 }
 /*ADMIN MENU ITEMS*/
-.admin-menu-items {
+.user-menu-items {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3322,7 +3325,7 @@ th {
   }
 }
 /*ADMIN MENU FORM*/
-.admin-menu-item-form {
+.user-menu-item-form {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3416,7 +3419,7 @@ form {
   }
 }
 /*ADMIN ORDERS*/
-.admin-orders {
+.user-orders {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3520,7 +3523,7 @@ form {
   }
 }
 /*ADMIN ORDER DETAILS*/
-.admin-order-detail {
+.user-order-detail {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3659,7 +3662,7 @@ form {
   }
 }
 /*ADMIN PAYMENTS*/
-.admin-payments {
+.user-payments {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3729,7 +3732,7 @@ form {
   color: #95a5a6;
 }
 /*ADMIN PAYMENT DETAILS*/
-.admin-payment-detail {
+.user-payment-detail {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -3809,7 +3812,7 @@ form {
      align-items: center;
 }
  */
-.admin-item-image {
+.user-item-image {
   width: 60px;
   height: 60px;
   object-fit: cover;
