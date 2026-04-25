@@ -88,85 +88,65 @@ nav {
   color: #ff6600;
   /* Highlight on hover */
 }
-/**ERROR STYLING*/
+/** ERROR STYLING */
 .error-display {
-  margin-top: 1rem;
-  z-index: 1000;
-  width: 90%;
-  max-width: 500px;
-  animation: fadeInDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  opacity: 0.9;
-  /* Slightly transparent for better readability */
-  margin-left: auto;
-  /* Center horizontally */
-  margin-right: auto;
-  /* Center horizontally */
-}
-.error-content {
-  background: #fff;
-  color: #d32f2f;
-  padding: 16px 24px;
+  width: 100%;                  /* Розтягуємо на всю ширину батьківської форми */
+  box-sizing: border-box;       /* Рахуємо ширину разом з рамками та відступами */
+  margin: 1rem 0;               /* Відступ зверху і знизу */
+  position: relative;
+  overflow: hidden;             /* Не дає дочірнім анімаціям вилазити назовні */
   border-radius: 8px;
-  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.1);
+  animation: fadeInDown 0.3s ease-out forwards;
+}
+
+.error-content {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fde8e8;
+  color: #d32f2f;
+  padding: 14px 20px;
+  border-radius: 8px;
   text-align: center;
   position: relative;
   overflow: hidden;
   border-left: 4px solid #d32f2f;
+  border: 1px solid #f8b4b4;
+  border-left: 4px solid #d32f2f;
 }
+
 .error-message {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
+  display: block;
 }
-.success{
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #ff6600;
-  color: green;
-}
-/* Progress Bar Animation */
 .error-progress {
   position: absolute;
   bottom: 0;
   left: 0;
   height: 3px;
   width: 100%;
-  background: rgba(211, 47, 47, 0.2);
+  background: #d32f2f;
   animation: progressBar 5s linear forwards;
 }
-/* Animations */
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-30px);
-    /* Adjusted transform for non-fixed positioning */
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @keyframes progressBar {
   from {
     width: 100%;
-    background: #d32f2f;
   }
   to {
     width: 0%;
-    background: #d32f2f;
-  }
-}
-/* Responsive Design */
-@media (max-width: 768px) {
-  .error-display {
-    width: 95%;
-  }
-  .error-content {
-    padding: 12px 16px;
-  }
-  .error-message {
-    font-size: 14px;
   }
 }
 /** REGISTRATION PAGE*/

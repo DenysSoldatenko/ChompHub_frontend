@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useError} from '../../components/ErrorDisplay';
 import {registerUser} from '../../api/userApi';
+import {extractErrorMessage} from '../../utils/errorHandler';
 
 const UserRegistration = () => {
   const {RenderError, showError} = useError();
@@ -14,7 +15,6 @@ const UserRegistration = () => {
     password: '',
     phoneNumber: '',
     address: '',
-    roles: []
   });
 
   const handleChange = (e) => {
@@ -26,7 +26,7 @@ const UserRegistration = () => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.password || !formData.phoneNumber || !formData.address) {
-      showError('All fields except roles are required');
+      showError('All fields are required');
       return;
     }
 
@@ -36,12 +36,8 @@ const UserRegistration = () => {
       await registerUser(formData);
       navigate('/login');
     } catch (error) {
-      const backendError =
-          error.response?.data?.detail ||
-          error.response?.data?.message ||
-          (error.response?.data?.errors && Object.values(error.response.data.errors).join(', '));
-
-      showError(backendError || error.message || 'Registration failed');
+      const message = extractErrorMessage(error);
+      showError(message);
     } finally {
       setIsLoading(false);
     }
@@ -52,7 +48,7 @@ const UserRegistration = () => {
         <div className="user-register-card">
           <div className="user-register-header">
             <h2 className="user-register-title">Register New User</h2>
-            <p className="user-register-description">Create a new user account with specific roles</p>
+            <p className="user-register-description">Create a new user account</p>
           </div>
           <div className="user-register-content">
             <form className="user-register-form" onSubmit={handleSubmit}>
