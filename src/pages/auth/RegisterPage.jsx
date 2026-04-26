@@ -52,7 +52,6 @@ const UserRegistration = () => {
           </div>
           <div className="user-register-content">
             <form className="user-register-form" onSubmit={handleSubmit}>
-
               <div className="user-form-group">
                 <label className="user-label">Name</label>
                 <input
@@ -64,7 +63,6 @@ const UserRegistration = () => {
                     placeholder="John Doe"
                 />
               </div>
-
               <div className="user-form-group">
                 <label className="user-label">Email</label>
                 <input
@@ -76,7 +74,6 @@ const UserRegistration = () => {
                     placeholder="example@mail.com"
                 />
               </div>
-
               <div className="user-form-group">
                 <label className="user-label">Password</label>
                 <input
@@ -88,7 +85,6 @@ const UserRegistration = () => {
                     placeholder="••••••••"
                 />
               </div>
-
               <div className="user-form-group">
                 <label className="user-label">Phone Number</label>
                 <input
@@ -100,7 +96,6 @@ const UserRegistration = () => {
                     placeholder="+380..."
                 />
               </div>
-
               <div className="user-form-group">
                 <label className="user-label">Address</label>
                 <input
@@ -112,15 +107,11 @@ const UserRegistration = () => {
                     placeholder="Street, City, Postal Code"
                 />
               </div>
-
               {RenderError}
-
               <button
                   type="submit"
                   className="user-register-button"
-                  disabled={isLoading}
-              >
-                {isLoading ? 'Registering User...' : 'Register User'}
+                  disabled={isLoading}>{isLoading ? 'Registering User...' : 'Register User'}
               </button>
             </form>
           </div>
