@@ -2,26 +2,55 @@ import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useError} from '../components/ErrorDisplay';
 import {getAllCategories} from '../api/categoryApi';
+import {getAllProducts} from '../api/productApi';
 import {extractErrorMessage} from '../utils/errorHandler';
 
 const HomePage = () => {
-  const [categories, setCategories] = useState([]);
+  const [featuredCategories, setFeaturedCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const {RenderError, showError} = useError();
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getAllCategories();
-        setCategories(data);
+        const [categoriesData, productsData] = await Promise.all([
+          getAllCategories(),
+          getAllProducts()
+        ]);
+
+        const productsList = Array.isArray(productsData) ? productsData : productsData.content || [];
+        const productsByCategory = productsList.reduce((acc, product) => {
+          const catId = product.categoryId || product.category?.id;
+          if (!acc[catId]) acc[catId] = [];
+          acc[catId].push(product);
+          return acc;
+        }, {});
+
+        const mappedCategories = categoriesData.map(category => {
+          const matchingProducts = productsByCategory[category.id] || [];
+
+          let randomProduct = null;
+          if (matchingProducts.length > 0) {
+            const randomIndex = Math.floor(Math.random() * matchingProducts.length);
+            randomProduct = matchingProducts[randomIndex];
+          }
+
+          return {
+            ...category,
+            imageUrl: randomProduct?.imageUrl || randomProduct?.image_url || 'https://via.placeholder.com/600x400?text=Food',
+            featuredDishName: randomProduct?.name || category.name
+          };
+        });
+
+        setFeaturedCategories(mappedCategories);
       } catch (error) {
         showError(extractErrorMessage(error));
       } finally {
         setIsLoading(false);
       }
     };
-    fetchCategories();
+    fetchData();
   }, []);
 
   const handleCategoryClick = (categoryId) => {
@@ -34,9 +63,7 @@ const HomePage = () => {
         <header className="home-hero-section">
           <div className="home-hero-content">
             <h1 className="home-hero-title">Discover Delicious Meals</h1>
-            <p className="home-hero-subtitle">
-              Order your favorite food online quickly and easily
-            </p>
+            <p className="home-hero-subtitle">Order your favorite food online quickly and easily</p>
             <button className="home-explore-button" onClick={() => navigate('/menu')}>
               Explore Menu
             </button>
@@ -46,13 +73,24 @@ const HomePage = () => {
           <h2 className="home-section-title">Featured Categories</h2>
           {isLoading ? (<p className="home-loading">Loading categories...</p>) : (
               <div className="home-category-carousel">
-                {categories.map((category) => (
+                {featuredCategories.map((category) => (
                     <div
                         key={category.id}
                         className="home-category-card"
                         onClick={() => handleCategoryClick(category.id)}>
-                      <h3 className="home-category-name">{category.name}</h3>
-                      <p className="home-category-description">{category.description}</p>
+                      <div className="home-category-image-container">
+                        <img
+                            src={category.imageUrl}
+                            alt={category.featuredDishName}
+                            className="home-category-img"
+                            loading="lazy"
+                        />
+                      </div>
+                      <div className="home-category-info">
+                        <h3 className="home-category-name">{category.name}</h3>
+                        <p className="home-category-dish">Featured: {category.featuredDishName}</p>
+                        <p className="home-category-description">{category.description}</p>
+                      </div>
                     </div>
                 ))}
               </div>
