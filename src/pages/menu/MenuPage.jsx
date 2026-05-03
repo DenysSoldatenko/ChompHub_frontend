@@ -40,25 +40,23 @@ const MenuPage = () => {
 
   const filteredMenus = useMemo(() => {
     return menus.filter((item) => {
-      const itemCategoryId = item.categoryId || item.category?.id;
-      const matchesCategory = categoryId ? String(itemCategoryId) === String(categoryId) : true;
-      const matchesSearch =
-          item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.description?.toLowerCase().includes(searchTerm.toLowerCase());
+      const rawCatId = item.categoryId ?? item.category_id ?? (typeof item.category === 'object' ? item.category?.id : item.category);
+      const matchesCategory = categoryId ? String(rawCatId) === String(categoryId) : true;
+      const query = searchTerm.trim().toLowerCase();
+      const matchesSearch = query ? item.name?.toLowerCase().includes(query) : true;
       return matchesCategory && matchesSearch;
     });
   }, [menus, categoryId, searchTerm]);
+
+  const handleClearFilter = () => {
+    setSearchParams({});
+  };
 
   const totalPages = Math.ceil(filteredMenus.length / ITEMS_PER_PAGE) || 1;
   const paginatedMenus = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredMenus.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredMenus, currentPage]);
-
-  const handleClearFilter = () => {
-    searchParams.delete('category');
-    setSearchParams(searchParams);
-  };
 
   const handlePageChange = (pageNum) => {
     setCurrentPage(pageNum);
