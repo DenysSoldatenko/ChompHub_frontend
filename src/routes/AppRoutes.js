@@ -4,6 +4,7 @@ import UserLogin from "../pages/auth/LoginPage";
 import HomePage from "../pages/HomePage";
 import CategoryPage from "../pages/menu/CategoryPage";
 import MenuPage from "../pages/menu/MenuPage";
+import ProductPage from "../pages/menu/ProductPage";
 
 
 export const AppRoutes = () => {
@@ -14,6 +15,7 @@ export const AppRoutes = () => {
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/categories" element={<CategoryPage/>}/>
         <Route path="/menu" element={<MenuPage/>}/>
+        <Route path="/menu/:id" element={<ProductPage/>}/>
 
 
       </Routes>
