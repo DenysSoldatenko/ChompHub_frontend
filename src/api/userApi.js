@@ -14,7 +14,7 @@ export const getMyProfile = async () => {
   return response.data;
 };
 
-export const updateMyProfile = async (profileData) => {
+export const updateProfile = async (profileData) => {
   const response = await apiClient.put('/users/me', profileData);
   return response.data;
 };
@@ -31,7 +31,7 @@ export const updateProfilePicture = async (file) => {
   return response.data;
 };
 
-export const deactivateMyAccount = async () => {
+export const deactivateAccount = async () => {
   await apiClient.delete('/users/me');
 };
 

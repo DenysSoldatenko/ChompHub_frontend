@@ -6,6 +6,7 @@ import CategoryPage from "../pages/menu/CategoryPage";
 import MenuPage from "../pages/menu/MenuPage";
 import ProductPage from "../pages/menu/ProductPage";
 import ProfilePage from "../pages/profile/ProfilePage";
+import UpdateProfilePage from "../pages/profile/UpdateProfilePage";
 
 
 export const AppRoutes = () => {
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
         <Route path="/menu" element={<MenuPage/>}/>
         <Route path="/menu/:id" element={<ProductPage/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
+        <Route path="/profile/update" element={<UpdateProfilePage/>}/>
 
 
       </Routes>

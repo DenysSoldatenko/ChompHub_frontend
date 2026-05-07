@@ -27,7 +27,7 @@ const ProfilePage = () => {
     fetchUserProfile();
   }, []);
 
-  const navigateToEditPage = () => navigate('/update');
+  const navigateToEditPage = () => navigate('/profile/update');
   const navigateToOrderHistory = () => navigate('/my-order-history');
 
   if (isLoading) {
