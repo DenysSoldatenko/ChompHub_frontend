@@ -15,7 +15,11 @@ export const getMyProfile = async () => {
 };
 
 export const updateProfile = async (profileData) => {
-  const response = await apiClient.put('/users/me', profileData);
+  const response = await apiClient.put('/users/me', profileData, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   return response.data;
 };
 

@@ -75,13 +75,6 @@ const ProfilePage = () => {
                 <span className="profile-info-label">Address:</span>
                 <span>{user.address || 'Not provided'}</span>
               </p>
-              <p>
-                <span className="profile-info-label">Status:</span>
-                <span
-                    className={user.status === 'ACTIVE' || user.active ? 'profile-status-active' : 'profile-status-inactive'}>
-                                {user.status || (user.active ? 'ACTIVE' : 'INACTIVE')}
-                            </span>
-              </p>
             </div>
             <div className="profile-actions">
               <button onClick={navigateToEditPage} className="profile-edit-button">Edit Profile</button>
