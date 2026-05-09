@@ -100,11 +100,12 @@ const UpdateProfilePage = () => {
           <div className="profile-card-header">
             <div className="profile-card-title">
               <div className="profile-avatar-wrapper" onClick={triggerFileInput}>
-                <img
-                    src={previewImage || 'https://picsum.photos/150'}
-                    alt="Profile Preview"
-                    className="avatar-image-edit"
-                />
+                {previewImage ? (
+                    <img src={previewImage} alt="Profile Preview" className="avatar-image-edit"/>) : (
+                    <div className="avatar-fallback">
+                      {name ? name.substring(0, 2).toUpperCase() : 'U'}
+                    </div>
+                )}
                 <div className="avatar-edit-overlay">
                   <span>📷</span>
                 </div>
