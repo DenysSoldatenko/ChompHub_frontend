@@ -5,7 +5,9 @@ import {getAllCategories} from '../../api/categoryApi';
 import {getAllProducts} from '../../api/productApi';
 import {extractErrorMessage} from '../../utils/errorHandler';
 
-const CategoriesPage = () => {
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80';
+
+const CategoryPage = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -21,15 +23,18 @@ const CategoriesPage = () => {
 
         const rawCategories = Array.isArray(categoriesData) ? categoriesData : categoriesData?.content || [];
         const rawProducts = Array.isArray(productsData) ? productsData : productsData?.content || [];
+
         const productsByCategory = rawProducts.reduce((acc, product) => {
-          const catId = product.categoryId || product.category?.id;
-          if (!acc[catId]) acc[catId] = [];
-          acc[catId].push(product);
+          const catName = product.categoryName || (typeof product.category === 'string' ? product.category : product.category?.name);
+          if (catName) {
+            if (!acc[catName]) acc[catName] = [];
+            acc[catName].push(product);
+          }
           return acc;
         }, {});
 
         const mapped = rawCategories.map((category) => {
-          const items = productsByCategory[category.id] || [];
+          const items = productsByCategory[category.name] || [];
           let randomItem = null;
 
           if (items.length > 0) {
@@ -37,13 +42,13 @@ const CategoriesPage = () => {
             randomItem = items[randomIndex];
           }
 
+          const rawImage = randomItem?.imageUrl || randomItem?.image_url || category.imageUrl;
+          const safeImage = rawImage && !rawImage.includes('loremflickr.com') ? rawImage : FALLBACK_IMAGE;
+
           return {
             ...category,
             dishCount: items.length,
-            imageUrl:
-                randomItem?.imageUrl ||
-                randomItem?.image_url ||
-                'https://loremflickr.com/600/400/food',
+            imageUrl: safeImage,
             sampleDishName: randomItem?.name || null
           };
         });
@@ -59,8 +64,8 @@ const CategoriesPage = () => {
     fetchData();
   }, []);
 
-  const handleCategoryClick = (categoryId) => {
-    navigate(`/menu?category=${categoryId}`);
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/menu?category=${encodeURIComponent(categoryName)}`);
   };
 
   return (
@@ -74,19 +79,24 @@ const CategoriesPage = () => {
             <div className="categories-loading-container">
               <div className="categories-spinner"></div>
               <p>Curating delicious categories...</p>
-            </div>) : (
+            </div>
+        ) : (
             <div className="categories-grid">
-              {categories.map((category) => (
+              {categories.map((category, index) => (
                   <div
-                      key={category.id}
+                      key={category.id || `category-${index}`}
                       className="category-card"
-                      onClick={() => handleCategoryClick(category.id)}>
+                      onClick={() => handleCategoryClick(category.name)}>
                     <div className="category-image-wrapper">
                       <img
                           src={category.imageUrl}
                           alt={category.name}
                           className="category-img"
                           loading="lazy"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = FALLBACK_IMAGE;
+                          }}
                       />
                       {category.dishCount > 0 && (
                           <span className="category-badge">{category.dishCount} items</span>
@@ -110,4 +120,4 @@ const CategoriesPage = () => {
   );
 };
 
-export default CategoriesPage;
+export default CategoryPage;

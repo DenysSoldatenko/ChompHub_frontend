@@ -894,7 +894,7 @@ nav {
   box-sizing: border-box;
 }
 
-/* Заголовок по центру */
+/* Header */
 .menu-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -907,26 +907,20 @@ nav {
   margin-bottom: 0.5rem;
 }
 
-/* Синій акцентний розділювач замість помаранчевого */
-.menu-title-divider {
-  width: 60px;
-  height: 4px;
-  background-color: #3498db;
-  margin: 0 auto 1.2rem auto;
-  border-radius: 2px;
-}
-
-.menu-subtitle {
-  font-size: 1.05rem;
+.menu-category-filter-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 1rem;
   color: #7f8c8d;
-  margin: 0 0 1rem 0;
 }
 
-.menu-reset-filter {
+.clear-filter-btn {
   background: transparent;
   border: 1px solid #3498db;
   color: #3498db;
-  padding: 6px 14px;
+  padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -934,13 +928,13 @@ nav {
   transition: all 0.2s ease;
 }
 
-.menu-reset-filter:hover {
+.clear-filter-btn:hover {
   background: #3498db;
   color: #ffffff;
 }
 
-/* Пошуковий інпут */
-.menu-search-wrapper {
+/* Search input container */
+.menu-search-container {
   max-width: 550px;
   margin: 0 auto 3rem auto;
 }
@@ -962,32 +956,31 @@ nav {
   box-shadow: 0 4px 16px rgba(52, 152, 219, 0.15);
 }
 
-/* Сітка карток */
+/* Grid layout */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2rem;
 }
 
-/* Картка страви */
-.menu-item-card {
+/* Card item */
+.menu-card {
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(44, 62, 80, 0.06);
   border: 1px solid #edf2f7;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.menu-item-card:hover {
+.menu-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 14px 28px rgba(44, 62, 80, 0.12);
 }
 
-.menu-item-image-wrapper {
+.menu-card-image-wrapper {
   position: relative;
   width: 100%;
   height: 200px;
@@ -995,19 +988,19 @@ nav {
   overflow: hidden;
 }
 
-.menu-item-image {
+.menu-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.35s ease;
 }
 
-.menu-item-card:hover .menu-item-image {
+.menu-card:hover .menu-card-image {
   transform: scale(1.05);
 }
 
-/* Прайс-тег поверх картинки */
-.menu-item-price-tag {
+/* Price tag over image */
+.menu-card-price {
   position: absolute;
   bottom: 12px;
   left: 12px;
@@ -1020,22 +1013,22 @@ nav {
   font-weight: 700;
 }
 
-/* Контент картки */
-.menu-item-content {
+/* Card content */
+.menu-card-content {
   padding: 1.4rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.menu-item-name {
+.menu-card-name {
   font-size: 1.25rem;
   font-weight: 600;
   color: #2c3e50;
   margin: 0 0 0.5rem 0;
 }
 
-.menu-item-description {
+.menu-card-description {
   font-size: 0.9rem;
   color: #636e72;
   line-height: 1.5;
@@ -1047,23 +1040,20 @@ nav {
   overflow: hidden;
 }
 
-.menu-item-footer {
-  border-top: 1px dashed #e2e8f0;
-  padding-top: 0.8rem;
-}
-
-.menu-details-link {
+.menu-card-details-link {
   font-size: 0.85rem;
   font-weight: 600;
   color: #3498db;
+  text-decoration: none;
   transition: color 0.2s ease;
+  margin-top: auto;
 }
 
-.menu-item-card:hover .menu-details-link {
+.menu-card-details-link:hover {
   color: #2980b9;
 }
 
-/* Пагінація */
+/* Pagination */
 .menu-pagination {
   display: flex;
   justify-content: center;
@@ -1122,32 +1112,16 @@ nav {
   border-color: #2c3e50;
 }
 
-/* Спінер завантаження */
-.menu-loading-container,
-.menu-empty-state {
+/* Loading and empty states */
+.menu-loading,
+.menu-no-results {
   text-align: center;
   padding: 4rem 1rem;
   color: #7f8c8d;
-}
-
-.menu-spinner {
-  width: 38px;
-  height: 38px;
-  border: 3px solid #edf2f7;
-  border-top-color: #3498db;
-  border-radius: 50%;
-  margin: 0 auto 1rem auto;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  font-size: 1.1rem;
 }
 
 /*MENU DETAILS */
-/* Base Styles */
 .menu-details-container {
   max-width: 1200px;
   margin: 0 auto;

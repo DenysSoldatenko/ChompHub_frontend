@@ -5,6 +5,8 @@ import {getAllCategories} from '../api/categoryApi';
 import {getAllProducts} from '../api/productApi';
 import {extractErrorMessage} from '../utils/errorHandler';
 
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80';
+
 const HomePage = () => {
   const [featuredCategories, setFeaturedCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,16 +21,20 @@ const HomePage = () => {
           getAllProducts()
         ]);
 
-        const productsList = Array.isArray(productsData) ? productsData : productsData.content || [];
-        const productsByCategory = productsList.reduce((acc, product) => {
-          const catId = product.categoryId || product.category?.id;
-          if (!acc[catId]) acc[catId] = [];
-          acc[catId].push(product);
+        const rawCategories = Array.isArray(categoriesData) ? categoriesData : categoriesData?.content || [];
+        const rawProducts = Array.isArray(productsData) ? productsData : productsData?.content || [];
+
+        const productsByCategory = rawProducts.reduce((acc, product) => {
+          const catName = product.categoryName || (typeof product.category === 'string' ? product.category : product.category?.name);
+          if (catName) {
+            if (!acc[catName]) acc[catName] = [];
+            acc[catName].push(product);
+          }
           return acc;
         }, {});
 
-        const mappedCategories = categoriesData.map(category => {
-          const matchingProducts = productsByCategory[category.id] || [];
+        const mappedCategories = rawCategories.map(category => {
+          const matchingProducts = productsByCategory[category.name] || [];
 
           let randomProduct = null;
           if (matchingProducts.length > 0) {
@@ -36,9 +42,13 @@ const HomePage = () => {
             randomProduct = matchingProducts[randomIndex];
           }
 
+          const rawImage = randomProduct?.imageUrl || randomProduct?.image_url || category.imageUrl;
+          const safeImage = rawImage && !rawImage.includes('loremflickr.com') ? rawImage : FALLBACK_IMAGE;
+
           return {
             ...category,
-            imageUrl: randomProduct?.imageUrl || randomProduct?.image_url || 'https://via.placeholder.com/600x400?text=Food',
+            dishCount: matchingProducts.length,
+            imageUrl: safeImage,
             featuredDishName: randomProduct?.name || category.name
           };
         });
@@ -53,8 +63,8 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  const handleCategoryClick = (categoryId) => {
-    navigate(`/menu?category=${categoryId}`);
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/menu?category=${encodeURIComponent(categoryName)}`);
   };
 
   return (
@@ -77,14 +87,21 @@ const HomePage = () => {
                     <div
                         key={category.id}
                         className="home-category-card"
-                        onClick={() => handleCategoryClick(category.id)}>
+                        onClick={() => handleCategoryClick(category.name)}>
                       <div className="home-category-image-container">
                         <img
                             src={category.imageUrl}
                             alt={category.featuredDishName}
                             className="home-category-img"
                             loading="lazy"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = FALLBACK_IMAGE;
+                            }}
                         />
+                        {category.dishCount > 0 && (
+                            <span className="category-badge">{category.dishCount} items</span>
+                        )}
                       </div>
                       <div className="home-category-info">
                         <h3 className="home-category-name">{category.name}</h3>

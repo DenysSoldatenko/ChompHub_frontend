@@ -1,29 +1,30 @@
 import {useState, useEffect, useMemo} from 'react';
-import {useNavigate, useSearchParams} from 'react-router-dom';
+import {Link, useNavigate, useSearchParams} from 'react-router-dom';
 import {useError} from '../../components/ErrorDisplay';
 import {getAllProducts} from '../../api/productApi';
 import {extractErrorMessage} from '../../utils/errorHandler';
 
 const ITEMS_PER_PAGE = 8;
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80';
 
 const MenuPage = () => {
-  const [menus, setMenus] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const categoryId = searchParams.get('category');
-  const navigate = useNavigate();
+  const categoryQuery = searchParams.get('category');
+  useNavigate();
   const {RenderError, showError} = useError();
 
   useEffect(() => {
-    const fetchMenus = async () => {
+    const fetchProducts = async () => {
       setIsLoading(true);
       try {
         const data = await getAllProducts();
-        const productList = Array.isArray(data) ? data : data?.content || [];
-        setMenus(productList);
+        const productsList = Array.isArray(data) ? data : data?.content || [];
+        setProducts(productsList);
       } catch (error) {
         showError(extractErrorMessage(error));
       } finally {
@@ -31,36 +32,56 @@ const MenuPage = () => {
       }
     };
 
-    fetchMenus();
+    fetchProducts();
   }, []);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [categoryId, searchTerm]);
+  }, [categoryQuery, searchTerm]);
 
-  const filteredMenus = useMemo(() => {
-    return menus.filter((item) => {
-      const rawCatId = item.categoryId ?? item.category_id ?? (typeof item.category === 'object' ? item.category?.id : item.category);
-      const matchesCategory = categoryId ? String(rawCatId) === String(categoryId) : true;
-      const query = searchTerm.trim().toLowerCase();
-      const matchesSearch = query ? item.name?.toLowerCase().includes(query) : true;
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      let matchesCategory = true;
+
+      if (categoryQuery) {
+        const target = decodeURIComponent(categoryQuery).trim().toLowerCase();
+        const productCatName = (product.categoryName || '').trim().toLowerCase();
+        const productCatId = (product.categoryId ?? product.category?.id ?? '').toString().trim().toLowerCase();
+
+        matchesCategory = productCatName === target || productCatId === target;
+      }
+
+      let matchesSearch = true;
+      if (searchTerm.trim()) {
+        const searchLower = searchTerm.trim().toLowerCase();
+        const nameLower = (product.name || '').toLowerCase();
+        const descLower = (product.description || '').toLowerCase();
+        matchesSearch = nameLower.includes(searchLower) || descLower.includes(searchLower);
+      }
+
       return matchesCategory && matchesSearch;
     });
-  }, [menus, categoryId, searchTerm]);
+  }, [products, categoryQuery, searchTerm]);
 
-  const handleClearFilter = () => {
-    setSearchParams({});
+  const clearCategoryFilter = () => {
+    searchParams.delete('category');
+    setSearchParams(searchParams);
   };
 
-  const totalPages = Math.ceil(filteredMenus.length / ITEMS_PER_PAGE) || 1;
-  const paginatedMenus = useMemo(() => {
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE) || 1;
+  const paginatedProducts = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredMenus.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredMenus, currentPage]);
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
 
   const handlePageChange = (pageNum) => {
     setCurrentPage(pageNum);
     window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  const formatPrice = (price) => {
+    const num = Number(price);
+    return isNaN(num) ? '0.00' : num.toFixed(2);
   };
 
   return (
@@ -68,17 +89,16 @@ const MenuPage = () => {
         {RenderError}
         <div className="menu-header">
           <h1 className="menu-title">Our Menu</h1>
-          <div className="menu-title-divider"></div>
-          <p className="menu-subtitle">
-            {categoryId ? 'Filtered by selected category' : 'Explore all fresh and tasty dishes'}
-          </p>
-          {categoryId && (
-              <button className="menu-reset-filter" onClick={handleClearFilter}>
-                ✕ Clear Category Filter
-              </button>
+          {categoryQuery && (
+              <div className="menu-category-filter-indicator">
+                <p>Filtered by category: <strong>{categoryQuery}</strong></p>
+                <button onClick={clearCategoryFilter} className="clear-filter-btn">
+                  ✕ Clear Category Filter
+                </button>
+              </div>
           )}
         </div>
-        <div className="menu-search-wrapper">
+        <div className="menu-search-container">
           <input
               type="text"
               placeholder="Search dishes by name or ingredient..."
@@ -88,50 +108,38 @@ const MenuPage = () => {
           />
         </div>
         {isLoading ? (
-            <div className="menu-loading-container">
-              <div className="menu-spinner"></div>
-              <p>Preparing menu items...</p>
-            </div>
-        ) : paginatedMenus.length === 0 ? (
-            <div className="menu-empty-state">
-              <p>No dishes found matching your criteria.</p>
-            </div>
-        ) : (
+            <div className="menu-loading">Loading menu...</div>
+        ) : paginatedProducts.length > 0 ? (
             <>
               <div className="menu-grid">
-                {paginatedMenus.map((item) => (
-                    <div
-                        key={item.id}
-                        className="menu-item-card"
-                        onClick={() => navigate(`/menu/${item.id}`)}>
-                      <div className="menu-item-image-wrapper">
+                {paginatedProducts.map((product) => (
+                    <Link key={product.id} to={`/menu/${product.id}`} className="menu-card"
+                          style={{textDecoration: 'none', color: 'inherit'}}>
+                      <div className="menu-card-image-wrapper">
                         <img
                             src={
-                              item.imageUrl && !item.imageUrl.includes('loremflickr.com')
-                                  ? item.imageUrl
-                                  : `https://picsum.photos/seed/${item.id}/600/400`
+                              product.imageUrl && !product.imageUrl.includes('loremflickr.com')
+                                  ? product.imageUrl
+                                  : FALLBACK_IMAGE
                             }
-                            alt={item.name}
-                            className="menu-item-image"
+                            alt={product.name}
+                            className="menu-card-image"
                             loading="lazy"
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src =
-                                  'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80';
+                              e.target.src = FALLBACK_IMAGE;
                             }}
                         />
-                        <span className="menu-item-price-tag">
-                    ${Number(item.basePrice || item.price || 0).toFixed(2)}
+                        <div className="menu-card-price">${formatPrice(product.basePrice)}</div>
+                      </div>
+                      <div className="menu-card-content">
+                        <h3 className="menu-card-name">{product.name}</h3>
+                        <p className="menu-card-description">{product.description}</p>
+                        <span className="menu-card-details-link">
+                    View Details →
                   </span>
                       </div>
-                      <div className="menu-item-content">
-                        <h2 className="menu-item-name">{item.name}</h2>
-                        <p className="menu-item-description">{item.description}</p>
-                        <div className="menu-item-footer">
-                          <span className="menu-details-link">View Details →</span>
-                        </div>
-                      </div>
-                    </div>
+                    </Link>
                 ))}
               </div>
               {totalPages > 1 && (
@@ -158,6 +166,10 @@ const MenuPage = () => {
                   </div>
               )}
             </>
+        ) : (
+            <div className="menu-no-results">
+              <p>No dishes found matching your criteria.</p>
+            </div>
         )}
       </div>
   );
