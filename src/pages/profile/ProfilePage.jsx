@@ -28,7 +28,7 @@ const ProfilePage = () => {
   }, []);
 
   const navigateToEditPage = () => navigate('/profile/update');
-  const navigateToOrderHistory = () => navigate('/my-order-history');
+  const navigateToOrderHistory = () => navigate('/orders');
 
   if (isLoading) {
     return (<div className="profile-container loading-state">
