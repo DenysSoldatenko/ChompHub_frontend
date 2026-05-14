@@ -381,8 +381,9 @@ nav {
   margin-top: 1rem;
   text-align: center;
 }
+
+
 /**LOGIN PAGE*/
-/* Сторінка та картка входу */
 .login-page-food {
   min-height: 100vh;
   background-color: #f8f9fa;
@@ -496,163 +497,142 @@ nav {
   color: #3498db;
   text-decoration: underline;
 }
+
 /**HOME PAGE*/
 .home-page {
   padding: 0;
   margin: 0;
-  background-color: #f0f4f8;
-  /* A slightly softer background color */
+  background-color: #f8fafc; /* Crisp, neutral light slate */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Center content horizontally */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 .home-hero-section {
-  background-image: linear-gradient(to bottom, #ff6600, #e65100);
-  /* A gradient from orange to a darker orange */
-  color: white;
+  background-color: #0f172a;
+  color: #ffffff;
   text-align: center;
   padding: 8rem 2rem;
-  /* Increased padding for a more spacious feel */
   width: 100%;
-  /* Ensure full width */
   box-sizing: border-box;
-  /* Include padding in width calculation */
+  border-bottom: 4px solid #1e293b;
 }
+
 .home-hero-content {
   max-width: 800px;
-  /* Increased max-width for larger screens */
   margin: 0 auto;
-  /* Center the content within the section */
 }
+
 .home-hero-title {
   font-size: 3.5rem;
-  /* Larger title */
-  font-weight: bold;
+  font-weight: 800;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  /* More pronounced shadow */
+  letter-spacing: -1px;
+  text-transform: uppercase;
 }
+
 .home-hero-subtitle {
-  font-size: 1.8rem;
-  /* Larger subtitle */
-  margin-bottom: 2.5rem;
-  /* Increased margin */
-  line-height: 1.7;
-  /* Improved line height for better readability */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-.home-explore-button {
-  padding: 1.2rem 3rem;
-  /* Increased padding */
   font-size: 1.5rem;
-  /* Larger font size */
-  background-color: #fff;
-  color: #ff6600;
-  border: none;
-  border-radius: 0.75rem;
-  /* More rounded corners */
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* High-contrast, sharp primary action button */
+.home-explore-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.15rem;
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 2px solid #ffffff;
+  border-radius: 4px; /* Sharp corners */
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  /* Stronger shadow */
-  font-weight: 600;
-  /* Make the button text bold */
+  transition: all 0.2s ease;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .home-explore-button:hover {
-  background-color: #f2f2f2;
-  /* Slightly lighter background on hover */
-  transform: translateY(-4px);
-  /* Increased vertical lift on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  /* Increased shadow on hover*/
+  background-color: #e2e8f0;
+  border-color: #e2e8f0;
 }
+
 .home-featured-categories {
   padding: 6rem 2rem;
-  /* Increased padding */
   text-align: center;
   width: 100%;
+  max-width: 1200px;
   box-sizing: border-box;
 }
+
 .home-section-title {
-  font-size: 2.8rem;
-  /* Larger title */
-  font-weight: bold;
-  color: #222;
-  /* Darker heading color */
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
   margin-bottom: 3rem;
-  /* Increased margin */
-  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  border-bottom: 3px solid #0f172a;
+  display: inline-block;
+  padding-bottom: 0.5rem;
 }
+
+/* Carousel layout */
 .home-category-carousel {
   display: flex;
   overflow-x: auto;
   padding-bottom: 2rem;
-  /* Add padding at the bottom for scrollbar */
   scroll-snap-type: x mandatory;
-  /* Enable scroll snapping */
   gap: 2rem;
 }
+
+/* Corporate scrollbar (No Orange) */
 .home-category-carousel::-webkit-scrollbar {
-  height: 10px;
-  /* Adjust scrollbar height */
+  height: 8px;
 }
 .home-category-carousel::-webkit-scrollbar-track {
-  background: #f1f3f5;
-  /* Lighter scrollbar track */
-  border-radius: 10px;
+  background: #e2e8f0;
+  border-radius: 4px;
 }
 .home-category-carousel::-webkit-scrollbar-thumb {
-  background: #ff8533;
-  /* A brighter shade of orange */
-  border-radius: 10px;
-  border: 2px solid #f1f3f5;
-  /* Add a border */
+  background: #64748b;
+  border-radius: 4px;
 }
 .home-category-carousel::-webkit-scrollbar-thumb:hover {
-  background: #ff6600;
-  /* Original orange on hover */
+  background: #475569;
 }
+
+/* Strong, structured category cards */
 .home-category-card {
-  flex: 0 0 280px;
-  /* Increased width of each card */
-  background-color: #fff;
-  border-radius: 1rem;
-  /* More rounded corners */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  /* Slightly stronger shadow */
-  padding: 2rem;
-  /* Increased padding */
-  text-align: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  flex: 0 0 300px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 2px solid #cbd5e1;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   cursor: pointer;
   scroll-snap-align: start;
-  /* Make each card snap to the start */
-  border: 1px solid #e0e0e0;
-}
-.home-category-card {
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
 }
 
 .home-category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(15, 23, 42, 0.1);
+  border-color: #94a3b8;
 }
 
 .home-category-image-container {
   width: 100%;
   height: 180px;
   overflow: hidden;
-  background-color: #f1f2f6;
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #cbd5e1;
 }
 
 .home-category-img {
@@ -663,121 +643,121 @@ nav {
 }
 
 .home-category-info {
-  padding: 1rem;
+  padding: 1.5rem;
+}
+
+.home-category-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
 }
 
 .home-category-dish {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: #3498db;
-  margin-bottom: 0.4rem;
+  font-weight: 700;
+  color: #2563eb; /* Strong corporate blue */
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
+.home-category-description {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Call to Action Section */
 .home-call-to-action {
-  background-color: #f9f9f9;
-  /* A very light gray background */
+  background-color: #e2e8f0; /* Solid slate background */
   padding: 6rem 2rem;
-  /* Increased padding */
   text-align: center;
   width: 100%;
   box-sizing: border-box;
+  border-top: 1px solid #cbd5e1;
 }
+
 .home-cta-content {
   max-width: 700px;
-  /* Increased max width */
   margin: 0 auto;
 }
+
 .home-cta-title {
-  font-size: 2.5rem;
-  /* Larger title */
-  font-weight: bold;
-  color: #222;
-  /* Dark heading color */
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
 }
+
 .home-cta-text {
-  font-size: 1.3rem;
-  /* Larger text */
-  color: #555;
-  line-height: 1.7;
-  /* Improved line height */
+  font-size: 1.15rem;
+  color: #334155;
+  line-height: 1.6;
   margin-bottom: 2.5rem;
-  /* Increased margin */
+  font-weight: 500;
 }
+
+/* Solid Dark Action Button */
 .home-order-now-button {
-  padding: 1.2rem 3rem;
-  /* Increased padding */
-  font-size: 1.5rem;
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  border-radius: 0.75rem;
-  /* More rounded corners */
+  padding: 1rem 2.5rem;
+  font-size: 1.15rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  /* Stronger shadow */
-  font-weight: 600;
+  transition: all 0.2s ease;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .home-order-now-button:hover {
-  background-color: #e55d00;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  background-color: #1e293b;
+  border-color: #1e293b;
 }
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .home-hero-title {
-    font-size: 3rem;
-    /* Adjusted for smaller screens */
-  }
-  .home-hero-subtitle {
-    font-size: 1.4rem;
-  }
-  .home-section-title {
-    font-size: 2.2rem;
-  }
-  .home-cta-title{
-    font-size: 2.2rem;
-  }
+  .home-hero-title { font-size: 2.5rem; }
+  .home-hero-subtitle { font-size: 1.25rem; }
+  .home-section-title { font-size: 1.75rem; }
+  .home-cta-title { font-size: 1.75rem; }
+
   .home-category-card {
-    flex: 0 0 90%;
-    /* Make cards take up almost full width on small screens */
-    margin-right: 0;
+    flex: 0 0 85%;
     scroll-snap-align: center;
   }
+
   .home-category-carousel {
     gap: 1rem;
+    padding-bottom: 1rem;
   }
+
   .home-explore-button, .home-order-now-button {
-    font-size: 1.2rem;
-    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    padding: 0.875rem 2rem;
   }
-  .home-cta-text{
-    font-size: 1.2rem;
-  }
+
+  .home-cta-text { font-size: 1rem; }
 }
-/* For very small screens (e.g., phones) */
+
 @media (max-width: 480px) {
-  .home-hero-title {
-    font-size: 2.5rem;
-  }
-  .home-hero-subtitle {
-    font-size: 1.2rem;
-  }
-  .home-section-title {
-    font-size: 2rem;
-  }
-  .home-cta-title{
-    font-size: 2rem;
-  }
-  .home-explore-button, .home-order-now-button{
-    font-size: 1rem;
-    padding: 0.8rem 2rem;
-  }
-  .home-cta-text {
-    font-size: 1rem;
+  .home-hero-title { font-size: 2rem; }
+  .home-hero-subtitle { font-size: 1.1rem; }
+  .home-section-title { font-size: 1.5rem; }
+  .home-cta-title { font-size: 1.5rem; }
+
+  .home-explore-button, .home-order-now-button {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
+
 
 /**CATEGORY PAGE*/
 .categories-page {

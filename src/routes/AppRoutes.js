@@ -13,9 +13,10 @@ import OrderHistoryPage from "../pages/orders/OrderHistoryPage";
 export const AppRoutes = () => {
   return (
       <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/home" element={<HomePage/>}/>
         <Route path="/register" element={<UserRegistration/>}/>
         <Route path="/login" element={<UserLogin/>}/>
-        <Route path="/home" element={<HomePage/>}/>
         <Route path="/categories" element={<CategoryPage/>}/>
         <Route path="/menu" element={<MenuPage/>}/>
         <Route path="/menu/:id" element={<ProductPage/>}/>
