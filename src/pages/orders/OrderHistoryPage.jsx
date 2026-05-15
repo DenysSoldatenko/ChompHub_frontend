@@ -89,12 +89,18 @@ const OrderHistoryPage = () => {
                           )}
                           <span className="item-description">{item.description}</span>
                           <span className="item-quantity">Quantity: {item.quantity}</span>
-                          <span className="item-price">
-                      Price: ${Number(item.unitPriceSnapshot || 0).toFixed(2)}
-                    </span>
-                          <span className="subtotal">
-                      Subtotal: ${Number(item.totalPrice || 0).toFixed(2)}
-                    </span>
+                          <span className="item-price">Price: ${Number(item.unitPriceSnapshot || 0).toFixed(2)}</span>
+                          <span className="subtotal">Subtotal: ${Number(item.totalPrice || 0).toFixed(2)}</span>
+
+                          {/* NEW: Leave a Review Button (Case-insensitive check) */}
+                          {order.status?.toUpperCase() === 'DELIVERED' && item.productId && (
+                              <Link
+                                  to={`/leave-review?productId=${item.productId}&orderId=${order.id}`}
+                                  className="leave-review-btn"
+                              >
+                                ★ Leave a Review
+                              </Link>
+                          )}
                         </div>
                         <div className="item-image-container">
                           {item.productId ? (

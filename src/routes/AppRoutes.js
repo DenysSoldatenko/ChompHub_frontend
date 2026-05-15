@@ -8,6 +8,7 @@ import ProductPage from "../pages/menu/ProductPage";
 import ProfilePage from "../pages/profile/ProfilePage";
 import UpdateProfilePage from "../pages/profile/UpdateProfilePage";
 import OrderHistoryPage from "../pages/orders/OrderHistoryPage";
+import LeaveReviewPage from "../pages/reviews/LeaveReviewPage";
 
 
 export const AppRoutes = () => {
@@ -23,6 +24,9 @@ export const AppRoutes = () => {
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/profile/update" element={<UpdateProfilePage/>}/>
         <Route path="/orders" element={<OrderHistoryPage/>}/>
+        <Route path="/leave-review" element={<LeaveReviewPage />} />
+
+
 
 
       </Routes>
