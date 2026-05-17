@@ -15,6 +15,11 @@ export const getPaymentById = async (id) => {
   return response.data;
 };
 
+export const updatePaymentStatus = async (orderId, status) => {
+  const response = await apiClient.put(`/payments/order/${orderId}/status`, {status: status,});
+  return response.data;
+};
+
 // Admin endpoints
 export const getAllPaymentsAdmin = async (page = 0, size = 10) => {
   const response = await apiClient.get('/payments/admin/all', {

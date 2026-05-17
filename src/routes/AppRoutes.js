@@ -10,6 +10,7 @@ import UpdateProfilePage from "../pages/profile/UpdateProfilePage";
 import OrderHistoryPage from "../pages/orders/OrderHistoryPage";
 import LeaveReviewPage from "../pages/reviews/LeaveReviewPage";
 import CartPage from "../pages/cart/CartPage";
+import ProcessPaymentPage from "../pages/payment/ProcessPaymentPage";
 
 
 export const AppRoutes = () => {
@@ -27,7 +28,7 @@ export const AppRoutes = () => {
         <Route path="/orders" element={<OrderHistoryPage/>}/>
         <Route path="/leave-review" element={<LeaveReviewPage />} />
         <Route path="/cart" element={<CartPage />} />
-
+        <Route path="/payment" element={<ProcessPaymentPage />} />
 
 
       </Routes>

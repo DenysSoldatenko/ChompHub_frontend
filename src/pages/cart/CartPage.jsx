@@ -55,11 +55,12 @@ const CartPage = () => {
     try {
       const response = await placeOrder();
       if (!response?.statusCode || response.statusCode === 200) {
-        setMessage(response?.message || "Order placed successfully!");
+        const newOrder = response.data || response;
+        setMessage("Order created! Redirecting to secure payment...");
         setTimeout(() => {
           setMessage(null);
-          navigate('/my-order-history');
-        }, 2000);
+          navigate(`/payment?orderid=${newOrder.id}&amount=${cart.totalAmount}`);
+        }, 1500);
       }
     } catch (error) {
       showError(extractErrorMessage(error));
