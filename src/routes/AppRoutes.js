@@ -11,6 +11,7 @@ import OrderHistoryPage from "../pages/orders/OrderHistoryPage";
 import LeaveReviewPage from "../pages/reviews/LeaveReviewPage";
 import CartPage from "../pages/cart/CartPage";
 import ProcessPaymentPage from "../pages/payment/ProcessPaymentPage";
+import AdminLayout from "../components/admin/AdminLayout";
 
 
 export const AppRoutes = () => {
@@ -31,6 +32,7 @@ export const AppRoutes = () => {
         <Route path="/payment" element={<ProcessPaymentPage />} />
 
 
+        <Route path="/admin" element={<AdminLayout />} />
       </Routes>
   );
 };

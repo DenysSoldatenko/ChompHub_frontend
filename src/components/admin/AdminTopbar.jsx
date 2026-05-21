@@ -46,21 +46,21 @@ const AdminTopbar = () => {
         </div>
         {RenderError}
         <div className="topbar-right">
-          <div className="user-profile">
-            <div className="profile-info">
-              <span className="profile-name">{userProfile?.name || 'Administrator'}</span>
-              <span className="profile-role">Admin</span>
+          <div className="topbar-user-profile">
+            <div className="topbar-profile-info">
+              <span className="topbar-profile-name">{userProfile?.name || 'Administrator'}</span>
+              <span className="topbar-profile-role">Admin</span>
             </div>
             <img
                 src={userProfile?.profileUrl || FALLBACK_AVATAR}
                 alt="User Profile"
-                className="profile-image"
+                className="topbar-profile-image"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = FALLBACK_AVATAR;
                 }}/>
             <div className="topbar-divider"></div>
-            <button className="logout-btn" onClick={handleLogout} title="Log Out">
+            <button className="topbar-logout-btn" onClick={handleLogout} title="Log Out">
               <FontAwesomeIcon icon={faSignOutAlt}/>
             </button>
           </div>
