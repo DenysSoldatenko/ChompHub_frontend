@@ -12,6 +12,7 @@ import LeaveReviewPage from "../pages/reviews/LeaveReviewPage";
 import CartPage from "../pages/cart/CartPage";
 import ProcessPaymentPage from "../pages/payment/ProcessPaymentPage";
 import AdminLayout from "../components/admin/AdminLayout";
+import AdminCategoriesPage from "../pages/admin/AdminCategoriesPage";
 
 
 export const AppRoutes = () => {
@@ -31,8 +32,8 @@ export const AppRoutes = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/payment" element={<ProcessPaymentPage />} />
 
-
         <Route path="/admin" element={<AdminLayout />} />
+        <Route path="/admin/categories" element={<AdminCategoriesPage />} />
       </Routes>
   );
 };
