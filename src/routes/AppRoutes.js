@@ -13,6 +13,7 @@ import CartPage from "../pages/cart/CartPage";
 import ProcessPaymentPage from "../pages/payment/ProcessPaymentPage";
 import AdminLayout from "../components/admin/AdminLayout";
 import AdminCategoriesPage from "../pages/admin/AdminCategoriesPage";
+import AdminCategoryFormPage from "../pages/admin/AdminCategoryFormPage";
 
 
 export const AppRoutes = () => {
@@ -28,12 +29,20 @@ export const AppRoutes = () => {
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/profile/update" element={<UpdateProfilePage/>}/>
         <Route path="/orders" element={<OrderHistoryPage/>}/>
-        <Route path="/leave-review" element={<LeaveReviewPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/payment" element={<ProcessPaymentPage />} />
+        <Route path="/leave-review" element={<LeaveReviewPage/>}/>
+        <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/payment" element={<ProcessPaymentPage/>}/>
 
-        <Route path="/admin" element={<AdminLayout />} />
-        <Route path="/admin/categories" element={<AdminCategoriesPage />} />
+        <Route path="/admin" element={<AdminLayout/>}/>
+        <Route path="/admin/categories" element={<AdminCategoriesPage/>}/>
+        <Route path="/admin/categories/new" element={<AdminCategoryFormPage/>}/>
+        <Route path="/admin/categories/edit/:id" element={<AdminCategoryFormPage/>}/>
+
+
+
+
+
+
       </Routes>
   );
 };

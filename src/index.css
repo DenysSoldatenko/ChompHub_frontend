@@ -3236,6 +3236,56 @@ nav {
   color: #0f172a;
 }
 
+/* Force Corporate Style on Form Buttons */
+.admin-form-container .back-btn {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 2px solid #cbd5e1 !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  box-shadow: none !important;
+}
+
+.admin-form-container .back-btn:hover {
+  border-color: #0f172a !important;
+  background-color: #f8fafc !important;
+}
+
+.admin-form-container .save-btn {
+  background-color: #0f172a !important; /* Overrides the rogue green */
+  color: #ffffff !important;
+  border: 2px solid #0f172a !important;
+  width: auto !important; /* Stops the button from stretching */
+  min-width: 200px; /* Gives it a solid, clickable size */
+  padding: 0.875rem 2rem !important;
+}
+
+.admin-form-container .save-btn:hover {
+  background-color: #1e293b !important;
+  border-color: #1e293b !important;
+}
+
+/* Add spacing and a clean separator line above the save button */
+.admin-form-card .form-actions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Forms */
+.admin-form-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.05);
+  padding: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto; /* Pushes equally from both sides to center the card */
+}
+
+
 /* Headers */
 .admin-content-header {
   display: flex;
