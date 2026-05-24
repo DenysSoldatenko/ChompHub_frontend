@@ -3517,7 +3517,164 @@ nav {
 
 
 
+/* ADMIN MENU ITEMS - STRONG CORPORATE STYLE */
 
+.admin-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.admin-menu-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-menu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(15, 23, 42, 0.08);
+}
+
+.menu-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.menu-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-card-price {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-card-details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.menu-card-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.menu-card-description {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+  flex-grow: 1;
+
+  /* Truncates text to 2 lines if it gets too long */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.menu-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.menu-card-reviews {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.menu-card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.menu-card-actions .btn-action {
+  padding: 0.5rem 0.75rem;
+  margin: 0; /* Overrides the left-margin from the table actions */
+}
+
+/* Pagination Container */
+.admin-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #cbd5e1;
+  width: 100%;
+}
+
+/* Pagination Text */
+.pagination-info {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Pagination Buttons */
+.admin-pagination button {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 2px solid #0f172a;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.admin-pagination button:hover:not(:disabled) {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+/* Disabled State for Page 1 or the Last Page */
+.admin-pagination button:disabled {
+  border-color: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+  background-color: #f8fafc;
+}
 
 /*ADMIN CATEGORY FORM*/
 .user-category-form {

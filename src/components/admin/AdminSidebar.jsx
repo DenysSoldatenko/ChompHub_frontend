@@ -38,7 +38,7 @@ const AdminSidebar = () => {
                   to="/admin/menu-items"
                   className={({isActive}) => isActive ? 'sidebar-link active' : 'sidebar-link'}>
                 <FontAwesomeIcon icon={faUtensils} className="sidebar-icon"/>
-                <span>Menu Items</span>
+                <span>Products</span>
               </NavLink>
             </li>
             <li>

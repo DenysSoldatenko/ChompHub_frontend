@@ -44,8 +44,7 @@ const AdminCategoriesPage = () => {
     }
   };
 
-  return (
-      <div className="admin-management-container">
+  return (<div className="admin-management-container">
         {RenderError}
 
         <div className="admin-content-header">
@@ -66,9 +65,7 @@ const AdminCategoriesPage = () => {
             </tr>
             </thead>
             <tbody>
-            {categories.length > 0 ? (
-                categories.map((category) => (
-                    <tr key={category.id}>
+            {categories.length > 0 ? (categories.map((category) => (<tr key={category.id}>
                       <td className="id-col">#{category.id}</td>
                       <td className="name-col">{category.name}</td>
                       <td className="desc-col">{category.description}</td>
@@ -88,18 +85,13 @@ const AdminCategoriesPage = () => {
                           <FontAwesomeIcon icon={faTrash}/> Delete
                         </button>
                       </td>
-                    </tr>
-                ))
-            ) : (
-                <tr>
+                    </tr>))) : (<tr>
                   <td colSpan="4" className="empty-state">No categories found.</td>
-                </tr>
-            )}
+                </tr>)}
             </tbody>
           </table>
         </div>
-      </div>
-  );
+      </div>);
 };
 
 export default AdminCategoriesPage;

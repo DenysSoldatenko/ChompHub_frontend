@@ -9,8 +9,7 @@ const AdminCategoryFormPage = () => {
   const {RenderError, showError} = useError();
 
   const [category, setCategory] = useState({
-    name: '',
-    description: ''
+    name: '', description: ''
   });
 
   useEffect(() => {
@@ -49,8 +48,7 @@ const AdminCategoryFormPage = () => {
     }
   };
 
-  return (
-      <div className="admin-form-container">
+  return (<div className="admin-form-container">
         {RenderError}
         <div className="admin-content-header">
           <h1 className="admin-page-title">{id ? 'Edit Category' : 'Add New Category'}</h1>
@@ -92,8 +90,7 @@ const AdminCategoryFormPage = () => {
             </div>
           </form>
         </div>
-      </div>
-  );
+      </div>);
 };
 
 export default AdminCategoryFormPage;
