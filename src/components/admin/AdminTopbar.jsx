@@ -37,8 +37,7 @@ const AdminTopbar = () => {
     document.querySelector('.admin-sidebar')?.classList.toggle('active');
   };
 
-  return (
-      <header className="admin-topbar">
+  return (<header className="admin-topbar">
         <div className="topbar-left">
           <button className="sidebar-toggle" onClick={toggleSidebar} aria-label="Toggle Sidebar">
             <FontAwesomeIcon icon={faBars}/>
@@ -65,8 +64,7 @@ const AdminTopbar = () => {
             </button>
           </div>
         </div>
-      </header>
-  );
+      </header>);
 };
 
 export default AdminTopbar;

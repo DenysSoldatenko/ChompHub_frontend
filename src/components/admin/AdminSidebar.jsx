@@ -1,16 +1,11 @@
 import {NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
-  faChartLine,
-  faList,
-  faUtensils,
-  faShoppingBag,
-  faCreditCard
+  faChartLine, faList, faUtensils, faShoppingBag, faCreditCard
 } from '@fortawesome/free-solid-svg-icons';
 
 const AdminSidebar = () => {
-  return (
-      <aside className="admin-sidebar">
+  return (<aside className="admin-sidebar">
         <div className="sidebar-header">
           <h2>Admin Panel</h2>
         </div>
@@ -59,8 +54,7 @@ const AdminSidebar = () => {
             </li>
           </ul>
         </nav>
-      </aside>
-  );
+      </aside>);
 };
 
 export default AdminSidebar;
