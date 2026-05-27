@@ -57,11 +57,7 @@ const UpdateProfilePage = () => {
 
     try {
       await updateProfile({
-        name,
-        email,
-        password,
-        phoneNumber,
-        address
+        name, email, password, phoneNumber, address
       });
 
       if (profileImage) {
@@ -70,11 +66,7 @@ const UpdateProfilePage = () => {
 
       navigate('/profile');
     } catch (error) {
-      showError(
-          error.response?.data?.detail ||
-          error.response?.data?.message ||
-          'Failed to update profile. Ensure password has at least 8 chars, 1 uppercase, 1 digit, 1 special char.'
-      );
+      showError(error.response?.data?.detail || error.response?.data?.message || 'Failed to update profile. Ensure password has at least 8 chars, 1 uppercase, 1 digit, 1 special char.');
     }
   };
 
@@ -92,20 +84,17 @@ const UpdateProfilePage = () => {
     }
   };
 
-  return (
-      <div className="profile-container">
+  return (<div className="profile-container">
         {RenderError}
         <h1 className="profile-title">Update Profile</h1>
         <div className="profile-card">
           <div className="profile-card-header">
             <div className="profile-card-title">
               <div className="profile-avatar-wrapper" onClick={triggerFileInput}>
-                {previewImage ? (
-                    <img src={previewImage} alt="Profile Preview" className="avatar-image-edit"/>) : (
+                {previewImage ? (<img src={previewImage} alt="Profile Preview" className="avatar-image-edit"/>) : (
                     <div className="avatar-fallback">
                       {name ? name.substring(0, 2).toUpperCase() : 'U'}
-                    </div>
-                )}
+                    </div>)}
                 <div className="avatar-edit-overlay">
                   <span>📷</span>
                 </div>
@@ -197,8 +186,7 @@ const UpdateProfilePage = () => {
             </form>
           </div>
         </div>
-      </div>
-  );
+      </div>);
 };
 
 export default UpdateProfilePage;
