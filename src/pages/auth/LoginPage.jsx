@@ -13,8 +13,7 @@ const UserLogin = () => {
   const redirectPath = state?.from?.pathname || '/home';
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: '', password: ''
   });
 
   const handleChange = (e) => {
@@ -43,59 +42,57 @@ const UserLogin = () => {
     }
   };
 
-  return (
-      <div className="login-page-food">
-        {RenderError}
-        <div className="login-card-food">
-          <div className="login-header-food">
-            <h2 className="login-title-food">Login</h2>
-            <p className="login-description-food">Login to your account to order delicious food!</p>
-          </div>
-          <div className="login-content-food">
-            <form className="login-form-food" onSubmit={handleSubmit}>
-              <div className="login-form-group">
-                <label htmlFor="email" className="login-label-food">Email</label>
-                <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your Email Address"
-                    className="login-input-food"
-                />
-              </div>
-              <div className="login-form-group">
-                <label htmlFor="password" className="login-label-food">Password</label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    placeholder="Password"
-                    className="login-input-food"
-                />
-              </div>
-              <div>
-                <button
-                    type="submit"
-                    className="login-button-food"
-                    disabled={isLoading}>{isLoading ? 'Logging in...' : 'Login'}
-                </button>
-              </div>
-              <div className="already">
-                <Link to="/register" className="register-link-food">Don't Have an Account? Register</Link>
-              </div>
-            </form>
-          </div>
-        </div>
+  return (<div className="login-page-food">
+    {RenderError}
+    <div className="login-card-food">
+      <div className="login-header-food">
+        <h2 className="login-title-food">Login</h2>
+        <p className="login-description-food">Login to your account to order delicious food!</p>
       </div>
-  );
+      <div className="login-content-food">
+        <form className="login-form-food" onSubmit={handleSubmit}>
+          <div className="login-form-group">
+            <label htmlFor="email" className="login-label-food">Email</label>
+            <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Your Email Address"
+                className="login-input-food"
+            />
+          </div>
+          <div className="login-form-group">
+            <label htmlFor="password" className="login-label-food">Password</label>
+            <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Password"
+                className="login-input-food"
+            />
+          </div>
+          <div>
+            <button
+                type="submit"
+                className="login-button-food"
+                disabled={isLoading}>{isLoading ? 'Logging in...' : 'Login'}
+            </button>
+          </div>
+          <div className="already">
+            <Link to="/register" className="register-link-food">Don't Have an Account? Register</Link>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>);
 };
 
 export default UserLogin;
