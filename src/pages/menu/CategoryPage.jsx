@@ -16,10 +16,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [categoriesData, productsData] = await Promise.all([
-          getAllCategories(),
-          getAllProducts()
-        ]);
+        const [categoriesData, productsData] = await Promise.all([getAllCategories(), getAllProducts()]);
 
         const rawCategories = Array.isArray(categoriesData) ? categoriesData : categoriesData?.content || [];
         const rawProducts = Array.isArray(productsData) ? productsData : productsData?.content || [];
@@ -46,10 +43,7 @@ const CategoryPage = () => {
           const safeImage = rawImage && !rawImage.includes('loremflickr.com') ? rawImage : FALLBACK_IMAGE;
 
           return {
-            ...category,
-            dishCount: items.length,
-            imageUrl: safeImage,
-            sampleDishName: randomItem?.name || null
+            ...category, dishCount: items.length, imageUrl: safeImage, sampleDishName: randomItem?.name || null
           };
         });
 
@@ -68,56 +62,44 @@ const CategoryPage = () => {
     navigate(`/menu?category=${encodeURIComponent(categoryName)}`);
   };
 
-  return (
-      <div className="categories-page">
-        {RenderError}
-        <div className="categories-hero">
-          <h1 className="categories-title">Explore Categories</h1>
-          <p className="categories-subtitle">Find your next favorite meal prepared fresh daily</p>
+  return (<div className="categories-page">
+    {RenderError}
+    <div className="categories-hero">
+      <h1 className="categories-title">Explore Categories</h1>
+      <p className="categories-subtitle">Find your next favorite meal prepared fresh daily</p>
+    </div>
+    {isLoading ? (<div className="categories-loading-container">
+      <div className="categories-spinner"></div>
+      <p>Curating delicious categories...</p>
+    </div>) : (<div className="categories-grid">
+      {categories.map((category, index) => (<div
+          key={category.id || `category-${index}`}
+          className="category-card"
+          onClick={() => handleCategoryClick(category.name)}>
+        <div className="category-image-wrapper">
+          <img
+              src={category.imageUrl}
+              alt={category.name}
+              className="category-img"
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = FALLBACK_IMAGE;
+              }}
+          />
+          {category.dishCount > 0 && (<span className="category-badge">{category.dishCount} items</span>)}
         </div>
-        {isLoading ? (
-            <div className="categories-loading-container">
-              <div className="categories-spinner"></div>
-              <p>Curating delicious categories...</p>
-            </div>
-        ) : (
-            <div className="categories-grid">
-              {categories.map((category, index) => (
-                  <div
-                      key={category.id || `category-${index}`}
-                      className="category-card"
-                      onClick={() => handleCategoryClick(category.name)}>
-                    <div className="category-image-wrapper">
-                      <img
-                          src={category.imageUrl}
-                          alt={category.name}
-                          className="category-img"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = FALLBACK_IMAGE;
-                          }}
-                      />
-                      {category.dishCount > 0 && (
-                          <span className="category-badge">{category.dishCount} items</span>
-                      )}
-                    </div>
-                    <div className="category-card-body">
-                      <h2 className="category-name">{category.name}</h2>
-                      <p className="category-description">{category.description}</p>
-                      {category.sampleDishName && (
-                          <div className="category-footer-hint">
-                            <span>Try today: </span>
-                            <strong>{category.sampleDishName}</strong>
-                          </div>
-                      )}
-                    </div>
-                  </div>
-              ))}
-            </div>
-        )}
-      </div>
-  );
+        <div className="category-card-body">
+          <h2 className="category-name">{category.name}</h2>
+          <p className="category-description">{category.description}</p>
+          {category.sampleDishName && (<div className="category-footer-hint">
+            <span>Try today: </span>
+            <strong>{category.sampleDishName}</strong>
+          </div>)}
+        </div>
+      </div>))}
+    </div>)}
+  </div>);
 };
 
 export default CategoryPage;
