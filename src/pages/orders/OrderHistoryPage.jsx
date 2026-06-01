@@ -9,11 +9,7 @@ const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63
 const formatDate = (dateString) => {
   if (!dateString) return '';
   return new Date(dateString).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+    year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
   });
 };
 
@@ -40,111 +36,84 @@ const OrderHistoryPage = () => {
   }, []);
 
   if (isLoading) {
-    return (
-        <div className="order-history-container">
-          <div className="order-loading">Loading order history...</div>
-        </div>
-    );
+    return (<div className="order-history-container">
+      <div className="order-loading">Loading order history...</div>
+    </div>);
   }
 
   if (!orders || orders.length === 0) {
-    return (
-        <div className="order-history-container">
-          {RenderError}
-          <div className="no-orders-message">
-            <p>You have no previous orders.</p>
-          </div>
-        </div>
-    );
+    return (<div className="order-history-container">
+      {RenderError}
+      <div className="no-orders-message">
+        <p>You have no previous orders.</p>
+      </div>
+    </div>);
   }
 
-  return (
-      <div className="order-history-container">
-        {RenderError}
-        <h1 className="order-history-title">Your Order History</h1>
-        <div className="order-list">
-          {orders.map((order) => (
-              <div key={order.id} className="order-card">
-                <div className="order-header">
-                  <span className="order-id">Order ID: {order.id}</span>
-                  <span className="order-date">Date: {formatDate(order.createdAt)}</span>
-                  <span className="order-status">
+  return (<div className="order-history-container">
+    {RenderError}
+    <h1 className="order-history-title">Your Order History</h1>
+    <div className="order-list">
+      {orders.map((order) => (<div key={order.id} className="order-card">
+        <div className="order-header">
+          <span className="order-id">Order ID: {order.id}</span>
+          <span className="order-date">Date: {formatDate(order.createdAt)}</span>
+          <span className="order-status">
                 Status: <span className={`status-${(order.status || '').toLowerCase()}`}>{order.status}</span>
               </span>
-                  <span className="order-total">
+          <span className="order-total">
                 Total: ${Number(order.totalAmount || 0).toFixed(2)}
               </span>
-                </div>
-                <div className="order-items">
-                  <h2 className="order-items-title">Order Items:</h2>
-                  {order.orderItems?.map((item) => (
-                      <div key={item.id} className="order-item">
-                        <div className="item-details">
-                          {item.productId ? (
-                              <Link to={`/menu/${item.productId}`} style={{textDecoration: 'none', color: 'inherit'}}>
-                                <span className="item-name">{item.productName}</span>
-                              </Link>
-                          ) : (
-                              <span className="item-name">{item.productName}</span>
-                          )}
-                          <span className="item-description">{item.description}</span>
-                          <span className="item-quantity">Quantity: {item.quantity}</span>
-                          <span className="item-price">Price: ${Number(item.unitPriceSnapshot || 0).toFixed(2)}</span>
-                          <span className="subtotal">Subtotal: ${Number(item.totalPrice || 0).toFixed(2)}</span>
-
-                          {/* NEW: Leave a Review Button (Case-insensitive check) */}
-                          {order.status?.toUpperCase() === 'DELIVERED' && item.productId && (
-                              <Link
-                                  to={`/leave-review?productId=${item.productId}&orderId=${order.id}`}
-                                  className="leave-review-btn"
-                              >
-                                ★ Leave a Review
-                              </Link>
-                          )}
-                        </div>
-                        <div className="item-image-container">
-                          {item.productId ? (
-                              <Link to={`/menu/${item.productId}`}>
-                                <img
-                                    src={
-                                      item.imageUrl && !item.imageUrl.includes('loremflickr.com')
-                                          ? item.imageUrl
-                                          : FALLBACK_IMAGE
-                                    }
-                                    alt={item.productName}
-                                    className="item-image"
-                                    loading="lazy"
-                                    onError={(e) => {
-                                      e.target.onerror = null;
-                                      e.target.src = FALLBACK_IMAGE;
-                                    }}
-                                />
-                              </Link>
-                          ) : (
-                              <img
-                                  src={
-                                    item.imageUrl && !item.imageUrl.includes('loremflickr.com')
-                                        ? item.imageUrl
-                                        : FALLBACK_IMAGE
-                                  }
-                                  alt={item.productName}
-                                  className="item-image"
-                                  loading="lazy"
-                                  onError={(e) => {
-                                    e.target.onerror = null;
-                                    e.target.src = FALLBACK_IMAGE;
-                                  }}
-                              />
-                          )}
-                        </div>
-                      </div>
-                  ))}
-                </div>
-              </div>
-          ))}
         </div>
-      </div>
-  );
+        <div className="order-items">
+          <h2 className="order-items-title">Order Items:</h2>
+          {order.orderItems?.map((item) => (<div key={item.id} className="order-item">
+            <div className="item-details">
+              {item.productId ? (
+                  <Link to={`/menu/${item.productId}`} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <span className="item-name">{item.productName}</span>
+                  </Link>) : (<span className="item-name">{item.productName}</span>)}
+              <span className="item-description">{item.description}</span>
+              <span className="item-quantity">Quantity: {item.quantity}</span>
+              <span className="item-price">Price: ${Number(item.unitPriceSnapshot || 0).toFixed(2)}</span>
+              <span className="subtotal">Subtotal: ${Number(item.totalPrice || 0).toFixed(2)}</span>
+
+              {/* NEW: Leave a Review Button (Case-insensitive check) */}
+              {order.status?.toUpperCase() === 'DELIVERED' && item.productId && (<Link
+                  to={`/leave-review?productId=${item.productId}&orderId=${order.id}`}
+                  className="leave-review-btn"
+              >
+                ★ Leave a Review
+              </Link>)}
+            </div>
+            <div className="item-image-container">
+              {item.productId ? (<Link to={`/menu/${item.productId}`}>
+                <img
+                    src={item.imageUrl && !item.imageUrl.includes('loremflickr.com') ? item.imageUrl : FALLBACK_IMAGE}
+                    alt={item.productName}
+                    className="item-image"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = FALLBACK_IMAGE;
+                    }}
+                />
+              </Link>) : (<img
+                  src={item.imageUrl && !item.imageUrl.includes('loremflickr.com') ? item.imageUrl : FALLBACK_IMAGE}
+                  alt={item.productName}
+                  className="item-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = FALLBACK_IMAGE;
+                  }}
+              />)}
+            </div>
+          </div>))}
+        </div>
+      </div>))}
+    </div>
+  </div>);
 };
 
 export default OrderHistoryPage;
