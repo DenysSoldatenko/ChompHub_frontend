@@ -23,10 +23,8 @@ const PaymentForm = ({amount, orderId, onSuccess}) => {
         '::placeholder': {
           color: '#94a3b8'
         }
-      },
-      invalid: {
-        color: '#dc2626',
-        iconColor: '#dc2626'
+      }, invalid: {
+        color: '#dc2626', iconColor: '#dc2626'
       }
     }
   };
@@ -46,7 +44,7 @@ const PaymentForm = ({amount, orderId, onSuccess}) => {
         throw new Error('Failed to retrieve payment authorization from server.');
       }
 
-      const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecretString, {
+      const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(clientSecretString, {
         payment_method: {
           card: elements.getElement(CardElement),
         }
@@ -70,19 +68,17 @@ const PaymentForm = ({amount, orderId, onSuccess}) => {
     }
   };
 
-  return (
-      <form onSubmit={handleSubmit} className="payment-form">
-        {RenderError}
-        <div className="stripe-card-wrapper">
-          <CardElement options={cardElementOptions}/>
-        </div>
-        <button
-            type="submit"
-            disabled={!stripe || loading}
-            className="btn-primary pay-button">{loading ? 'Processing...' : `Pay $${Number(amount).toFixed(2)}`}
-        </button>
-      </form>
-  );
+  return (<form onSubmit={handleSubmit} className="payment-form">
+    {RenderError}
+    <div className="stripe-card-wrapper">
+      <CardElement options={cardElementOptions}/>
+    </div>
+    <button
+        type="submit"
+        disabled={!stripe || loading}
+        className="btn-primary pay-button">{loading ? 'Processing...' : `Pay $${Number(amount).toFixed(2)}`}
+    </button>
+  </form>);
 };
 
 const ProcessPaymentPage = () => {
@@ -118,43 +114,40 @@ const ProcessPaymentPage = () => {
   };
 
   if (paymentCompleted) {
-    return (
-        <div className="checkout-container">
-          <div className="payment-success-card">
-            <div className="success-icon">✓</div>
-            <h2 className="success-title">Payment Successful</h2>
-            <p className="success-message">Thank you for your purchase. Your order (<strong>#{orderDetails.orderId}</strong>) is now being processed.</p>
-            <p className="success-submessage">A receipt will be sent to your email shortly.</p>
-            <button onClick={() => navigate('/orders')} className="btn-secondary mt-4">View Order History</button>
-          </div>
-        </div>
-    );
+    return (<div className="checkout-container">
+      <div className="payment-success-card">
+        <div className="success-icon">✓</div>
+        <h2 className="success-title">Payment Successful</h2>
+        <p className="success-message">Thank you for your purchase. Your order
+          (<strong>#{orderDetails.orderId}</strong>) is now being processed.</p>
+        <p className="success-submessage">A receipt will be sent to your email shortly.</p>
+        <button onClick={() => navigate('/orders')} className="btn-secondary mt-4">View Order History</button>
+      </div>
+    </div>);
   }
 
-  return (
-      <div className="checkout-container">
-        {RenderError}
-        <div className="payment-card">
-          <div className="payment-header">
-            <h1 className="payment-title">Secure Checkout</h1>
-            <p className="payment-subtitle">Order #{orderDetails.orderId}</p>
-          </div>
-          <div className="payment-amount-display">
-            <span className="amount-label">Total to Pay</span>
-            <span className="amount-value">${Number(orderDetails.amount).toFixed(2)}</span>
-          </div>
-          <Elements stripe={stripeInstance}>
-            <PaymentForm
-                amount={orderDetails.amount}
-                orderId={orderDetails.orderId}
-                onSuccess={handlePaymentSuccess}/>
-          </Elements>
-          <div className="secure-badge">
-            🔒 Payments are securely encrypted and processed by Stripe.
-          </div>
-        </div>
+  return (<div className="checkout-container">
+    {RenderError}
+    <div className="payment-card">
+      <div className="payment-header">
+        <h1 className="payment-title">Secure Checkout</h1>
+        <p className="payment-subtitle">Order #{orderDetails.orderId}</p>
       </div>
-  );
+      <div className="payment-amount-display">
+        <span className="amount-label">Total to Pay</span>
+        <span className="amount-value">${Number(orderDetails.amount).toFixed(2)}</span>
+      </div>
+      <Elements stripe={stripeInstance}>
+        <PaymentForm
+            amount={orderDetails.amount}
+            orderId={orderDetails.orderId}
+            onSuccess={handlePaymentSuccess}/>
+      </Elements>
+      <div className="secure-badge">
+        🔒 Payments are securely encrypted and processed by Stripe.
+      </div>
+    </div>
+  </div>);
 };
 
 export default ProcessPaymentPage;
