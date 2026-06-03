@@ -3274,6 +3274,54 @@ nav {
   justify-content: flex-start;
 }
 
+/* FORM GRID LAYOUT */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* CUSTOM FILE INPUT STYLING */
+input[type="file"].form-input {
+  padding: 0.5rem;
+  background-color: #f8fafc;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-right: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #1e293b;
+}
+
+/* IMAGE PREVIEW STYLING */
+.current-image-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.current-image-preview .form-label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
 /* Forms */
 .admin-form-card {
   background: #ffffff;
@@ -3518,7 +3566,6 @@ nav {
 
 
 /* ADMIN MENU ITEMS - STRONG CORPORATE STYLE */
-
 .admin-menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

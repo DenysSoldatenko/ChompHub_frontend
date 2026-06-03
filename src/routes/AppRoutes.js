@@ -15,7 +15,7 @@ import AdminLayout from "../components/admin/AdminLayout";
 import AdminCategoriesPage from "../pages/admin/AdminCategoriesPage";
 import AdminCategoryFormPage from "../pages/admin/AdminCategoryFormPage";
 import AdminMenuPage from "../pages/admin/AdminMenuPage";
-
+import AdminMenuFormPage from "../pages/admin/AdminMenuFormPage";
 
 export const AppRoutes = () => {
   return (
@@ -40,8 +40,8 @@ export const AppRoutes = () => {
         <Route path="/admin/categories/edit/:id" element={<AdminCategoryFormPage/>}/>
 
         <Route path="/admin/menu-items" element={<AdminMenuPage/>}/>
-        {/*<Route path="/admin/menu-items/new" element={<AdminMenuFormPage/>}/>*/}
-        {/*<Route path="/admin/menu-items/edit/:id" element={<AdminMenuFormPage/>}/>*/}
+        <Route path="/admin/menu-items/new" element={<AdminMenuFormPage/>}/>
+        <Route path="/admin/menu-items/edit/:id" element={<AdminMenuFormPage/>}/>
 
             <Route path="/admin/orders" element={<AdminCategoryFormPage/>}/>
         <Route path="/admin/orders/:id" element={<AdminCategoryFormPage/>}/>
