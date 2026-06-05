@@ -17,6 +17,7 @@ import AdminCategoryFormPage from "../pages/admin/AdminCategoryFormPage";
 import AdminMenuPage from "../pages/admin/AdminMenuPage";
 import AdminMenuFormPage from "../pages/admin/AdminMenuFormPage";
 import AdminOrdersPage from "../pages/admin/AdminOrdersPage";
+import AdminOrderDetailPage from "../pages/admin/AdminOrderDetailPage";
 
 export const AppRoutes = () => {
   return (
@@ -44,7 +45,7 @@ export const AppRoutes = () => {
         <Route path="/admin/menu-items/edit/:id" element={<AdminMenuFormPage/>}/>
 
         <Route path="/admin/orders" element={<AdminOrdersPage/>}/>
-        <Route path="/admin/orders/:id" element={<AdminCategoryFormPage/>}/>
+        <Route path="/admin/orders/:id" element={<AdminOrderDetailPage/>}/>
 
 
 
