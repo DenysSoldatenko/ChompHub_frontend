@@ -18,37 +18,36 @@ import AdminMenuPage from "../pages/admin/AdminMenuPage";
 import AdminMenuFormPage from "../pages/admin/AdminMenuFormPage";
 import AdminOrdersPage from "../pages/admin/AdminOrdersPage";
 import AdminOrderDetailPage from "../pages/admin/AdminOrderDetailPage";
+import AdminPaymentsPage from "../pages/admin/AdminPaymentsPage";
 
 export const AppRoutes = () => {
-  return (
-      <Routes>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/home" element={<HomePage/>}/>
-        <Route path="/register" element={<UserRegistration/>}/>
-        <Route path="/login" element={<UserLogin/>}/>
-        <Route path="/categories" element={<CategoryPage/>}/>
-        <Route path="/menu" element={<MenuPage/>}/>
-        <Route path="/menu/:id" element={<ProductPage/>}/>
-        <Route path="/profile" element={<ProfilePage/>}/>
-        <Route path="/profile/update" element={<UpdateProfilePage/>}/>
-        <Route path="/orders" element={<OrderHistoryPage/>}/>
-        <Route path="/leave-review" element={<LeaveReviewPage/>}/>
-        <Route path="/cart" element={<CartPage/>}/>
-        <Route path="/payment" element={<ProcessPaymentPage/>}/>
+  return (<Routes>
+    <Route path="/" element={<HomePage/>}/>
+    <Route path="/home" element={<HomePage/>}/>
+    <Route path="/register" element={<UserRegistration/>}/>
+    <Route path="/login" element={<UserLogin/>}/>
+    <Route path="/categories" element={<CategoryPage/>}/>
+    <Route path="/menu" element={<MenuPage/>}/>
+    <Route path="/menu/:id" element={<ProductPage/>}/>
+    <Route path="/profile" element={<ProfilePage/>}/>
+    <Route path="/profile/update" element={<UpdateProfilePage/>}/>
+    <Route path="/orders" element={<OrderHistoryPage/>}/>
+    <Route path="/leave-review" element={<LeaveReviewPage/>}/>
+    <Route path="/cart" element={<CartPage/>}/>
+    <Route path="/payment" element={<ProcessPaymentPage/>}/>
 
-        <Route path="/admin" element={<AdminLayout/>}/>
-        <Route path="/admin/categories" element={<AdminCategoriesPage/>}/>
-        <Route path="/admin/categories/new" element={<AdminCategoryFormPage/>}/>
-        <Route path="/admin/categories/edit/:id" element={<AdminCategoryFormPage/>}/>
-        <Route path="/admin/menu-items" element={<AdminMenuPage/>}/>
-        <Route path="/admin/menu-items/new" element={<AdminMenuFormPage/>}/>
-        <Route path="/admin/menu-items/edit/:id" element={<AdminMenuFormPage/>}/>
+    <Route path="/admin" element={<AdminLayout/>}/>
+    <Route path="/admin/categories" element={<AdminCategoriesPage/>}/>
+    <Route path="/admin/categories/new" element={<AdminCategoryFormPage/>}/>
+    <Route path="/admin/categories/edit/:id" element={<AdminCategoryFormPage/>}/>
+    <Route path="/admin/menu-items" element={<AdminMenuPage/>}/>
+    <Route path="/admin/menu-items/new" element={<AdminMenuFormPage/>}/>
+    <Route path="/admin/menu-items/edit/:id" element={<AdminMenuFormPage/>}/>
+    <Route path="/admin/orders" element={<AdminOrdersPage/>}/>
+    <Route path="/admin/orders/:id" element={<AdminOrderDetailPage/>}/>
 
-        <Route path="/admin/orders" element={<AdminOrdersPage/>}/>
-        <Route path="/admin/orders/:id" element={<AdminOrderDetailPage/>}/>
+    <Route path="/admin/payments" element={<AdminPaymentsPage/>}/>
+    <Route path="/admin/payment/:id" element={<AdminOrderDetailPage/>}/>
 
-
-
-      </Routes>
-  );
+  </Routes>);
 };

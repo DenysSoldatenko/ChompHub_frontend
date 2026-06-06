@@ -4653,6 +4653,152 @@ form {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+/* ADMIN PAYMENTS - STRONG CORPORATE STYLE */
+
+/* Header and Filters */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.filter-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-icon {
+  position: absolute;
+  left: 1rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.filter-select {
+  padding-left: 2.5rem !important;
+  width: 200px;
+  cursor: pointer;
+  background-color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem !important;
+  border: 2px solid #cbd5e1;
+}
+
+.filter-select:focus {
+  border-color: #0f172a;
+}
+
+/* Statistics Grid */
+.payment-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.revenue-icon { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.online-icon { background-color: #f8fafc; color: #0f172a; border: 1px solid #cbd5e1; }
+.success-icon { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-heading {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  margin: 0.25rem 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.stat-period {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table Specific Adjustments */
+.order-id-col {
+  font-weight: 700;
+  color: #475569;
+}
+
+.date-col {
+  color: #475569;
+  font-weight: 600;
+}
+
+.gateway-col {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.total-col {
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.view-btn {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  font-weight: 700 !important;
+}
+
+.view-btn:hover {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+
+/* Responsive Grid */
+@media (max-width: 992px) {
+  .payment-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
 /*ADMIN PAYMENTS*/
 .user-payments {
   background-color: white;
