@@ -19,6 +19,7 @@ import AdminMenuFormPage from "../pages/admin/AdminMenuFormPage";
 import AdminOrdersPage from "../pages/admin/AdminOrdersPage";
 import AdminOrderDetailPage from "../pages/admin/AdminOrderDetailPage";
 import AdminPaymentsPage from "../pages/admin/AdminPaymentsPage";
+import AdminPaymentDetailPage from "../pages/admin/AdminPaymentDetailPage";
 
 export const AppRoutes = () => {
   return (<Routes>
@@ -47,7 +48,7 @@ export const AppRoutes = () => {
     <Route path="/admin/orders/:id" element={<AdminOrderDetailPage/>}/>
 
     <Route path="/admin/payments" element={<AdminPaymentsPage/>}/>
-    <Route path="/admin/payment/:id" element={<AdminOrderDetailPage/>}/>
+    <Route path="/admin/payments/:id" element={<AdminPaymentDetailPage/>}/>
 
   </Routes>);
 };
