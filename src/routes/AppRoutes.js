@@ -20,6 +20,7 @@ import AdminOrdersPage from "../pages/admin/AdminOrdersPage";
 import AdminOrderDetailPage from "../pages/admin/AdminOrderDetailPage";
 import AdminPaymentsPage from "../pages/admin/AdminPaymentsPage";
 import AdminPaymentDetailPage from "../pages/admin/AdminPaymentDetailPage";
+import AdminDashboardPage from "../pages/admin/AdminDashboardPage";
 
 export const AppRoutes = () => {
   return (<Routes>
@@ -37,18 +38,19 @@ export const AppRoutes = () => {
     <Route path="/cart" element={<CartPage/>}/>
     <Route path="/payment" element={<ProcessPaymentPage/>}/>
 
-    <Route path="/admin" element={<AdminLayout/>}/>
-    <Route path="/admin/categories" element={<AdminCategoriesPage/>}/>
-    <Route path="/admin/categories/new" element={<AdminCategoryFormPage/>}/>
-    <Route path="/admin/categories/edit/:id" element={<AdminCategoryFormPage/>}/>
-    <Route path="/admin/menu-items" element={<AdminMenuPage/>}/>
-    <Route path="/admin/menu-items/new" element={<AdminMenuFormPage/>}/>
-    <Route path="/admin/menu-items/edit/:id" element={<AdminMenuFormPage/>}/>
-    <Route path="/admin/orders" element={<AdminOrdersPage/>}/>
-    <Route path="/admin/orders/:id" element={<AdminOrderDetailPage/>}/>
-
-    <Route path="/admin/payments" element={<AdminPaymentsPage/>}/>
-    <Route path="/admin/payments/:id" element={<AdminPaymentDetailPage/>}/>
-
+    <Route path="/admin" element={<AdminLayout />}>
+      <Route index element={<AdminDashboardPage />} />
+      <Route path="dashboard" element={<AdminDashboardPage />} />
+      <Route path="categories" element={<AdminCategoriesPage/>}/>
+      <Route path="categories/new" element={<AdminCategoryFormPage/>}/>
+      <Route path="categories/edit/:id" element={<AdminCategoryFormPage/>}/>
+      <Route path="menu-items" element={<AdminMenuPage/>}/>
+      <Route path="menu-items/new" element={<AdminMenuFormPage/>}/>
+      <Route path="menu-items/edit/:id" element={<AdminMenuFormPage/>}/>
+      <Route path="orders" element={<AdminOrdersPage/>}/>
+      <Route path="orders/:id" element={<AdminOrderDetailPage/>}/>
+      <Route path="payments" element={<AdminPaymentsPage/>}/>
+      <Route path="payments/:id" element={<AdminPaymentDetailPage/>}/>
+    </Route>
   </Routes>);
 };

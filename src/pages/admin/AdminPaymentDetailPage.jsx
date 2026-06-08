@@ -12,6 +12,7 @@ const AdminPaymentDetailPage = () => {
   const [order, setOrder] = useState(null);
   const {RenderError, showError} = useError();
   const navigate = useNavigate();
+
   useEffect(() => {
     const loadPaymentAndOrder = async () => {
       try {
@@ -34,15 +35,16 @@ const AdminPaymentDetailPage = () => {
       <div className="admin-loading-state">Loading payment details...</div>
     </div>);
   }
+
   const date = payment.createdAt;
   const status = (payment.status || 'UNKNOWN').toUpperCase();
   const amount = Number(payment.amount || 0);
   const isSuccessful = status === 'COMPLETED' || status === 'PAID';
   const gateway = 'STRIPE';
-  const transactionId = payment.clientSecret ? payment.clientSecret.split('_secret')[0] : 'N/A';
   const orderDate = order?.createdAt;
   const orderStatus = (order?.status || 'UNKNOWN').toUpperCase();
   const customerEmail = order?.userEmail;
+
   return (<div className="admin-detail-wrapper">
     {RenderError}
     <div className="admin-detail-header">
