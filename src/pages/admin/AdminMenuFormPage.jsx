@@ -160,7 +160,8 @@ const AdminMenuFormPage = () => {
                 className="form-input"
                 value={menu.categoryId}
                 onChange={handleInputChange}
-                required><option value="" disabled>Select a category</option>
+                required>
+              <option value="" disabled>Select a category</option>
               {categories.map(category => (<option key={category.id} value={category.id}>
                 {category.name}
               </option>))}

@@ -38,9 +38,9 @@ export const AppRoutes = () => {
     <Route path="/cart" element={<CartPage/>}/>
     <Route path="/payment" element={<ProcessPaymentPage/>}/>
 
-    <Route path="/admin" element={<AdminLayout />}>
-      <Route index element={<AdminDashboardPage />} />
-      <Route path="dashboard" element={<AdminDashboardPage />} />
+    <Route path="/admin" element={<AdminLayout/>}>
+      <Route index element={<AdminDashboardPage/>}/>
+      <Route path="dashboard" element={<AdminDashboardPage/>}/>
       <Route path="categories" element={<AdminCategoriesPage/>}/>
       <Route path="categories/new" element={<AdminCategoryFormPage/>}/>
       <Route path="categories/edit/:id" element={<AdminCategoryFormPage/>}/>

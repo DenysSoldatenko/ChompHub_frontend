@@ -6,11 +6,9 @@ import {getOrderById, updateOrderStatusAdmin} from '../../api/orderApi';
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80';
 
 const ORDER_STATUSES = [{value: 'PENDING', label: 'Pending'}, {
-  value: 'CONFIRMED',
-  label: 'Confirmed'
+  value: 'CONFIRMED', label: 'Confirmed'
 }, {value: 'PREPARING', label: 'Preparing'}, {value: 'IN_TRANSIT', label: 'In Transit'}, {
-  value: 'DELIVERED',
-  label: 'Delivered'
+  value: 'DELIVERED', label: 'Delivered'
 }, {value: 'CANCELLED', label: 'Cancelled'}];
 
 const AdminOrderDetailPage = () => {

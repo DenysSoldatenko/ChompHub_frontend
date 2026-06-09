@@ -95,20 +95,19 @@ const AdminMenuPage = () => {
           </div>
         </div>))}
       </div>
-      {totalPages > 1 && (
-          <div className="admin-pagination">
-            <button
-                className="btn-secondary"
-                disabled={currentPage === 0}
-                onClick={() => setCurrentPage(prev => prev - 1)}>Previous
-            </button>
-            <span className="pagination-info">Page {currentPage + 1} of {totalPages}</span>
-            <button
-                className="btn-secondary"
-                disabled={currentPage >= totalPages - 1}
-                onClick={() => setCurrentPage(prev => prev + 1)}>Next
-            </button>
-          </div>)}</>) : (
+      {totalPages > 1 && (<div className="admin-pagination">
+        <button
+            className="btn-secondary"
+            disabled={currentPage === 0}
+            onClick={() => setCurrentPage(prev => prev - 1)}>Previous
+        </button>
+        <span className="pagination-info">Page {currentPage + 1} of {totalPages}</span>
+        <button
+            className="btn-secondary"
+            disabled={currentPage >= totalPages - 1}
+            onClick={() => setCurrentPage(prev => prev + 1)}>Next
+        </button>
+      </div>)}</>) : (
         <div className="admin-table-card empty-state">No menu items found. Click "Add Menu Item" to create one.</div>)}
   </div>);
 };
