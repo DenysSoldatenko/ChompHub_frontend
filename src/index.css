@@ -3144,6 +3144,19 @@ nav {
     gap: 0.5rem;
   }
 }
+.user-register-page{display:flex;justify-content:center;align-items:center;min-height:80vh;background-color:#f8fafc;padding:2rem;}
+.user-register-card{background:#ffffff;border:1px solid #cbd5e1;border-radius:6px;box-shadow:0 4px 6px rgba(15,23,42,0.05);width:100%;max-width:480px;padding:2.5rem;box-sizing:border-box;}
+.user-register-header{text-align:center;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid #e2e8f0;}
+.user-register-title{margin:0 0 0.5rem 0;font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:#0f172a;}
+.user-register-description{margin:0;font-size:0.95rem;color:#64748b;}
+.user-register-form{display:flex;flex-direction:column;gap:1.5rem;}
+.user-form-group{display:flex;flex-direction:column;gap:0.5rem;}
+.user-label{font-size:0.85rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.5px;}
+.user-input{width:100%;padding:0.875rem 1rem;border:2px solid #cbd5e1;border-radius:4px;font-size:1rem;font-family:inherit;color:#0f172a;background-color:#ffffff;transition:border-color 0.2s ease;box-sizing:border-box;}
+.user-input:focus{outline:none;border-color:#0f172a;}
+.user-register-button{width:100%;padding:0.875rem;background-color:#0f172a;color:#ffffff;border:2px solid #0f172a;border-radius:4px;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s ease;margin-top:0.5rem;}
+.user-register-button:hover:not(:disabled){background-color:#1e293b;border-color:#1e293b;}
+.user-register-button:disabled{background-color:#94a3b8;border-color:#94a3b8;cursor:not-allowed;}
 /*ADMIN CATEGORIES */
 /* Admin Categories Styles */
 .user-categories {
