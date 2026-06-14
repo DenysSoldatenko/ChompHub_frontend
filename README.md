@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# 🍔 ChompHub: E-Commerce Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ChompHub is a React-based frontend application for a modern food delivery platform. It provides a complete, intuitive customer-facing storefront for browsing and ordering, alongside a secure administrative panel for managing the catalog, tracking orders, and viewing payment records.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🛠️ Tech Stack & Architecture
 
-### `npm start`
+* ⚛️ **Framework:** Component-driven React architecture.
+* 🎨 **Styling:** Custom modular CSS adhering to a unified design system.
+* 🌐 **API Layer:** Axios with global interceptors for automated JWT token refreshes and centralized error handling.
+* 🔀 **Routing:** React Router DOM with client-side Role-Based Access Control (RBAC).
+* 📊 **Data Visualization:** Chart.js via `react-chartjs-2` for administrative analytics.
+* 💳 **Payments:** Stripe Elements integration for secure, PCI-compliant checkout.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Key Features
 
-### `npm test`
+* 🛍️ **Customer Storefront:** A fully responsive shopping experience from product discovery to checkout.
+* 👨‍💼 **Admin Command Center:** A data-dense dashboard to oversee daily operations, revenue, and inventory.
+* 🔐 **Secure Routing:** Strict isolation between public consumer routes and protected administrative environments.
+* 🛡️ **Robust Error Handling:** Defensive data mapping and graceful UI degradation to prevent crashes during backend anomalies.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📱 Customer Storefront
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The public-facing application allows users to seamlessly discover food, place orders, and manage their accounts.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🚪 Authentication
+Standard secure login and account registration flow.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Login Page](docs/login-page.png)
+*The secure login gateway for existing users, featuring error validation and credential recovery.*
 
-### `npm run eject`
+![Register Page](docs/register-page.png)
+*A streamlined registration form to onboard new customers and capture essential contact and delivery information.*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🍕 Catalog & Discovery
+A welcoming home page storefront, a dynamic filterable menu catalog, and detailed product views.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Home Page](docs/home-page.png)
+*The main landing page designed with high-quality imagery to highlight featured dishes and active promotions.*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Menu Catalog](docs/menu-catalog.png)
+*A comprehensive, filterable grid allowing users to easily browse and sort products by category.*
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Product Details](docs/product-details.png)
+*An immersive single-product view with descriptions, pricing details, and a prominent call-to-action for the cart.*
 
-## Learn More
+### 🛒 Ordering Pipeline
+A frictionless shopping cart review, secure Stripe payment processing, and instant order confirmation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Cart & Checkout](docs/cart-checkout.png)
+*A transparent order summary page integrating Stripe Elements for seamless, secure payment processing.*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Payment Success](docs/payment-success.png)
+*A clear confirmation screen providing the user with their finalized transaction details and positive reinforcement.*
 
-### Code Splitting
+### 👤 User Dashboard
+Self-service profile management and live order history tracking.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Order History](docs/order-history.png)
+*A visual timeline for customers to quickly track their past purchases and monitor live fulfillment statuses.*
 
-### Analyzing the Bundle Size
+![User Profile](docs/user-profile.png)
+*A centralized hub for users to securely update their personal details, delivery addresses, and account credentials.*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## ⚙️ Administrative Panel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The restricted admin area provides staff with the tools required to manage the platform's daily operations and view vital business data.
 
-### Advanced Configuration
+### 📈 Business Dashboard
+A central view of platform metrics, monthly revenue line charts, order status distributions, and top-selling items.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Admin Dashboard](docs/admin-dashboard.png)
+*The executive overview featuring real-time revenue charts, active customer counts, and top-selling item metrics.*
 
-### Deployment
+### 📋 Catalog Management
+Intuitive tools to create, edit, and organize menu items and broad categories.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Categories List](docs/admin-categories-list.png)
+*The administrative ledger for creating, updating, and removing high-level product categories.*
 
-### `npm run build` fails to minify
+![Edit Category](docs/admin-category-edit.png)
+*A focused form interface for modifying category names and associated metadata.*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Menu Items List](docs/admin-menu-items-list.png)
+*A comprehensive inventory table displaying all products, their assigned categories, and pricing.*
+
+![Edit Menu Item](docs/admin-menu-item-edit.png)
+*The detailed product editor for updating images, descriptions, prices, and category assignments.*
+
+### 🚚 Order Management
+A live registry of all customer orders with immediate tools to update fulfillment statuses and track logistics.
+
+![Orders List](docs/admin-orders-list.png)
+*A live command center tracking incoming customer orders, total amounts, and current fulfillment stages.*
+
+![Order Details](docs/admin-order-details.png)
+*An in-depth view of a specific order, allowing administrators to review items and manually progress the delivery status.*
+
+### 💵 Payment Ledger
+A complete record of all Stripe transactions, system success rates, and highly detailed individual payment receipts.
+
+![Payments List](docs/admin-payments-list.png)
+*A secure financial ledger tracking all platform transactions, gateways, and overall success rates.*
+
+![Payment Details](docs/admin-payment-details.png)
+*A comprehensive audit trail for individual transactions, displaying gateway details, customer data, and linked order items.*
